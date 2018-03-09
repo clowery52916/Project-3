@@ -1,4 +1,4 @@
-# Project-3-
+# Project-3
 Application using MERN stack - MongoDB, Express, React.js and Node.js
 
 Link to Trello: https://trello.com/b/uEG96NqO/wdi-project-3
