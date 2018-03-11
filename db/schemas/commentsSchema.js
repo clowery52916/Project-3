@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const commentsSchama = new Schema({
-  Title: String,
-  description: String
+  comment_title: String,
+  comment_description: String
 })
 
 
