@@ -10,14 +10,7 @@ export default class Comments extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-        <Comments />
-          <Switch>
-            <Route exact path="/" component={Comments}/>
-          </Switch>
-        </div>
-      </Router>
+    <div>Your Comment</div>
     );
   }
 

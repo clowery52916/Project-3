@@ -11,7 +11,7 @@ export default class Navbar extends Component {
             <div>
               <Switch>
                 <Link to="/movies" className="butt">Movies</Link>
-                <Link to="/ratings" className="butt">Ratings</Link>
+                <Link to="/comments" className="butt">Comments</Link>
               </Switch>
             </div>
           </Router>
