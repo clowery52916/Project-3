@@ -23,8 +23,8 @@ app.use(bodyParser.json())
 
 
 //setting up routes
-const userController = require('./controllers/userController')
-app.use('/movies', userController)
+const moviesController = require('./controllers/moviesController')
+app.use('/api/movies', moviesController)
 
 
 app.get('/', (req, res) => {

@@ -1,30 +1,40 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import App from '../App'
+import { BrowserRouter as Router, Switch, Route , Link} from 'react-router-dom'
+import MovieShow from './MovieShow'
 
 
 export default class Movies extends Component {
 
   state = {
-      allMovies: []
+      movies: [],
+      showNewForm: true
     }
 
-// Step 3: Call 'componentWillMount' for making your API call
-// componentWillMount(){
-//   // Step 4: Use axios.get to retrieve all saved gifs from our API
-//   axios.get("https://api.themoviedb.org/3/movie/550?api_key=f29ae0f962a86b4c284ead3457d95fd5")
-//        // Step 5: Save the response array to this.state.movies
-//        .then((response) => {
-//          const movies = response.data;
-//          this.setState({allMovies: movies});
-//        })
-//        .catch((error) => {
-//          console.error("Error: ", error);
-//        });
-// }
-render() {
+    componentWillMount () {
+      this.getAllMovies()
+    }
+
+    getAllMovies = async () => {
+      const res = await axios.get('/api/movies')
+      this.setState({movies: res.data})
+    }
+    toggleShowNewForm = () => {
+      this.setState({showNewForm: !this.state.showNewForm})
+    }
+
+
+render () {
   return(
-    <h1>Winners from this years Academy Awards are... </h1>
+    <div>
+      <h1>Best Pictures </h1>
+      {this.state.movies.map(movie =>(
+      <Link key={movie._id} to={`/${movie._id}`}>
+          <h3>Title: {movie.title}</h3>
+          <p>Movie Description: {movie.description}</p>
+      </Link>
+      ))}
+    </div>
   )
 }
 }

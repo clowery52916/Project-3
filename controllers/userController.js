@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('../models/user')
+
+
+
+
+const User = require('../models/User')
 router.get('/', (req, res) => {
 
     res.send(user)
@@ -15,3 +19,6 @@ router.post('/movies', (req, res) => {
     name: req.body.name
   })
 })
+
+
+module.exports = router

@@ -5,6 +5,7 @@ import axios from 'axios'
 import syledComponent from 'styled-components'
 import NavBar from './components/NavBar'
 import Movies from './components/Movies'
+import MovieShow from './components/MovieShow'
 
 export default class App extends Component {
   render () {
@@ -16,6 +17,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/" component={User}/>
             <Route path ='/movies' component={Movies}/>
+            <Route exact path ='movies/:id' component={MovieShow}/>
           </Switch>
         </div>
       </Router>
