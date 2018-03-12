@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const schemas = require('../db/schema')
+const commentsSchema = require('../db/schemas/commentsSchema')
 
-const Comments = mongoose.model('comments', schcomment)
+const Comments = mongoose.model('comments', commentsSchema)
 
 module.exports = Comments

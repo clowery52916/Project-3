@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const schemas = require('../db/schema')
+const movieShowSchema = require('../db/schemas/movieShowSchema')
 
-const MovieShow = mongoose.model('movieShow', schemas.MovieShowSchema)
+const MovieShow = mongoose.model('movie', movieShowSchema)
 
 module.exports = MovieShow
