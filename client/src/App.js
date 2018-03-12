@@ -6,6 +6,8 @@ import syledComponent from 'styled-components'
 import NavBar from './components/NavBar'
 import Movies from './components/Movies'
 import MovieShow from './components/MovieShow'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class App extends Component {
   render () {

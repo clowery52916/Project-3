@@ -16,9 +16,9 @@ mongoose.connection.on('error', (error) => {
 
 
 // using async/await
-const movies = async () => {
+const saved = async () => {
   await Movies.remove()
-  const bestPicture = new Movies({title: 'The Shape of Water', description: 'lorem-ipsum'})
+  const bestPicture = new Movies({title: 'The Shape of Water',  description: 'lorem-ipsum'})
   await bestPicture.save()
   const runnerUp = new Movies({title: 'Three Billboards', description: 'lorem-ipsum'})
   await runnerUp.save()

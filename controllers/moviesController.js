@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const newMovies = new Movies({
-    name: req.body.name
+    movie: req.body.name
   })
 
   newMovies.save().then(() => {
