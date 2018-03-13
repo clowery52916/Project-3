@@ -5,8 +5,7 @@ export default class Comments extends Component {
 
 
   state = {
-    name: '',
-    description: ''
+    movieId:[]
   }
 
   handleChange = (event) => {
@@ -22,7 +21,7 @@ export default class Comments extends Component {
       name: this.state.name,
       description: this.state.description
     }
-    await axios.post('/api/comments', payload)
+    await axios.post('/:id/comments', payload)
     await this.props.getAllComments()
   }
 
@@ -43,3 +42,9 @@ export default class Comments extends Component {
   }
 
 }
+
+// toggleShowNewForm = () => {
+//   this.setState({
+//     showNewForm: !this.state.showNewForm
+//   })
+// }

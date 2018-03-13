@@ -19,7 +19,7 @@ db.on('open', () => {
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 //setting up routes

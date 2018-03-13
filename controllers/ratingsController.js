@@ -2,22 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 
-
-
-
 const Ratings = require('../models/Ratings')
-router.get('/ratings', (req, res) => {
 
+router.get('/ratings', (req, res) => {
+  Ratings.find().then((ratings) => {
+    res.send(ratings)
+  })
     res.send(ratings)
 
   })
 
-
-router.post('/movie_id', (req, res) => {
-  const newMovies = new Movies({
-    name: req.body.name
-  })
-})
+router.post
 
 
 module.exports = router

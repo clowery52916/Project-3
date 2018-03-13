@@ -1,6 +1,7 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 const Movies = require('../models/movies')
+const Ratings = require('../models/ratings')
 
 mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
@@ -18,10 +19,13 @@ mongoose.connection.on('error', (error) => {
 // using async/await
 const saved = async () => {
   await Movies.remove()
-  const bestPicture = new Movies({title: 'The Shape of Water',  description: 'lorem-ipsum'})
+  const bestPicture = new Movies({title: 'The Shape of Water',  description: 'lorem-ipsum', moviePoster: 'https://imgur.com/pMRc7hS'})
   await bestPicture.save()
-  const runnerUp = new Movies({title: 'Three Billboards', description: 'lorem-ipsum'})
+  const runnerUp = new Movies({title: 'Three Billboards', description: 'lorem-ipsum', moviePoster: 'https://imgur.com/PSaqHQB'})
   await runnerUp.save()
+  await Ratings.remove()
+  const userRating = new Ratings({rate: 'Rate this movie'})
+  await userRating.save()
   db.close()
 }
 

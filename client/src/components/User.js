@@ -5,7 +5,13 @@ export default class User extends Component {
     render() {
         return (
             <div>
-              <h1>Hi User!</h1>
+              <h1>Welcome to the Best Picture Showcase!!!</h1>
+
+
+
+              <button type="MovieShow">Click to enter</button>
+
+
             </div>
         );
     }
