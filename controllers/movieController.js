@@ -2,17 +2,29 @@ const express = require('express');
 const router = express.Router();
 
 
-const Movie = require('../models/Movie')
+const Movie = require('../models/movie')
 
-router.get('/movie', (req, res) => {
-  Movie.find().then((movie) => {
-    res.send(movie)
+router.get('/', function(req, res) {
+  Movie.find({}).exec(function(err, movies){
+    if (err) { console.log(err); }
+    console.log(movies)
+    res.json({ movies })
+  });
+})
+
+router.post('/movies/_id', function(req, res){
+  Movies.create( req.body )
+  .then(function(movie) {
+    console.log('succces', movie)
+
+    return Movies.find({}).exec()
   })
-    res.send(movie)
-
+  .then(function(movies) {
+    console.log(movies)
+    res.json({
+      data: movies
+    })
   })
-
-router.post
-
+});
 
 module.exports = router

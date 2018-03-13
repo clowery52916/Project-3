@@ -3,60 +3,53 @@ const router = express.Router({
   mergeParams: true
 });
 
-const Movie = require("../models/con");
-const Shout = require("../models/shout");
+const Movie = require("../models/movie");
+const Comment = require("../models/comments");
 
-//SHOUT Index ---------------------//////
-router.get("/", (req, res) => {
-  Movie.findById(req.params.singleMovie).then(movies => {
-    const comments = movies.comments;
-    res.json(comments);
+router.get('/', function(req, res) {
+  Gif.find({}).exec(function(err, gifs){
+    if (err) { console.log(err); }
+    console.log(gifs)
+    res.json({ gifs })
   });
-});
+})
 
-//SHOUT create --------------------///////
-router.post("/", (req, res) => {
-  //Find Movievention that comment is being added to
-  Movie.findById(req.params.singleMovie)
-    .then(movies => {
-      const newComment = new Comments({
-        comment_title: req.body.title,
-        comment_description: req.body.description,
-      
-      });
-      movies.comments.push(newComment);
-      return movies.save();
+router.post('/', function(req, res){
+  Gif.create( req.body )
+  .then(function(gif) {
+    console.log('succces', gif)
+
+    return Gif.find({}).exec()
+  })
+  .then(function(gifs) {
+    console.log(gifs)
+    res.json({
+      data: gifs
     })
-    .then(savedComment => {
-      res.send(savedComment);
-    });
+  })
 });
 
-//SHOUT Update ---------------------///////
-router.patch("/:id", (req, res) => {
-  Movie.findById(req.params.consId)
-    .then(cons => {
-      const shout = cons.shouts.id(req.params.id);
+router.put('/:id', function(req, res) {
+  Gif.update({_id: req.params.id}, req.body)
+   .then(function() {
+     return Gif.find({}).exec();
+   })
+   .then(function(gifs) {
+     res.json({message: "succesfully updated", gifs: gifs})
+   })
+   .catch(function(err) {
+     res.json(400, err)
+   });
+})
 
-      (shout.subject = req.body.subject),
-       (shout.msg = req.body.msg);
+router.delete('/:id', function(req, res) {
+  var id = req.params.id;
 
-      return cons.save();
-    })
-    .then(updatedMovie => {
-      res.json(updatedMovie);
-    });
-});
+  Gif.remove({_id: id}, function(error) {
+    if (error) response.json({message: 'Could not delete gif b/c: ' + error});
 
-//SHOUT delete---------------------////////
-router.delete("/:id", (req, res) => {
-  Movie.findById(req.params.singleMovie)
-    .then(cons => {
-      cons.shouts.id(req.params.id).remove();
-      return cons.save();
-    })
-    .then(savedMovie => {
-      res.send(savedMovie);
-    });
-});
+    res.json({message: 'gif successfully deleted'});
+  })
+})
+
 module.exports = router;

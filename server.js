@@ -23,9 +23,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 //setting up routes
-const moviesController = require('./controllers/moviesController')
-app.use('/api/movies', moviesController)
 
+const moviesController = require('./controllers/moviesController')
+const ratingsController = require('./controllers/ratingsController')
+const commentsController = require('./controllers/commentsController')
+const movieController = require('./controllers/movieController')
+
+
+app.use('/api/movies', moviesController)
+app.use('/api/movies/:singleMovie', movieController)
+app.use('/api/movies/:singleMovie/ratings', ratingsController)
+app.use('/api/movies/:singleMovie/comments', commentsController)
 
 app.get('/', (req, res) => {
   res.send('And the winner for best Picture is....')

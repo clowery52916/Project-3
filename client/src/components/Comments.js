@@ -3,30 +3,10 @@ import axios from 'axios'
 
 export default class Comments extends Component {
 
-
-  state = {
-    movieId:[]
-  }
-
-  handleChange = (event) => {
-    const name = event.target.name
-    const newState = {...this.state}
-    newState[name] = event.target.value
-    this.setState(newState)
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault()
-    const payload = {
-      name: this.state.name,
-      description: this.state.description
-    }
-    await axios.post('/:id/comments', payload)
-    await this.props.getAllComments()
-  }
-
   render () {
+    {this.props.movies}
     return (
+
       <form onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="name">Name: </label>
@@ -38,6 +18,8 @@ export default class Comments extends Component {
         </div>
         <button>Submit</button>
       </form>
+
+
     )
   }
 

@@ -12,7 +12,7 @@ router.get('/ratings', (req, res) => {
 
   })
 
-router.post
+
 
 
 module.exports = router

@@ -23,7 +23,8 @@ export default class App extends Component {
           <Route exact="exact" path='/movie/:id/comments ' component={Comments}/>
           <Route exact="exact" path= '/movie/:id/ratings' component={Ratings}/>
 
-
+          <Movie/>
+          <Comments/>
         </Switch>
       </div>
     </Router>)
