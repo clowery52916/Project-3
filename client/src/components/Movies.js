@@ -15,8 +15,8 @@ export default class Movies extends Component {
   }
 
   getAllMovies = async () => {
-    const movie = await axios.get('/api/movies')
-    this.setState({movies: movie.data})
+    const res = await axios.get('/api/movies')
+    this.setState({movies: res.data})
   }
 
 
@@ -25,10 +25,13 @@ export default class Movies extends Component {
 
       <div>
       <h1>Best Pictures</h1>
-        {this.state.movies.map(movie => (<Link key={movie.data} to={`/${movie._id}`}>
-          <h3>Title: {movie.title}</h3>
-          <p>Movie Description: {movie.description}</p>
-        </Link>))
+        {this.state.movies.map(movie =>
+          <Link key={movie._id} to={`/movies/${movie._id}`} cons={this.state.movie}>
+              <h3>{movie.title}</h3>
+                <img src={movie.moviePoster} alt={movie.title}/>
+          </Link>)
+
+
       }
     </div>
   )

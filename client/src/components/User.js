@@ -8,10 +8,6 @@ export default class User extends Component {
               <h1>Welcome to the Best Picture Showcase!!!</h1>
 
 
-
-              <button type="MovieShow">Click to enter</button>
-
-
             </div>
         );
     }
