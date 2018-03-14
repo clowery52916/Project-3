@@ -6,7 +6,7 @@ import NavBar from './components/NavBar'
 import User from './components/User'
 import Movies from './components/Movies'
 import Ratings from './components/Ratings'
-import Comments from './components/Comments'
+import Comment from './components/Comment'
 import Movie from './components/Movie'
 
 
@@ -20,11 +20,11 @@ export default class App extends Component {
           <Route exact="exact" path="/" component={User}/>
           <Route exact="exact" path='/movies' component={Movies}/>
           <Route exact="exact" path='/movie/:id' component={Movie}/>
-          <Route exact="exact" path='/movie/:id/comments ' component={Comments}/>
+          <Route exact="exact" path='/movie/:id/comment ' component={Comment}/>
           <Route exact="exact" path= '/movie/:id/ratings' component={Ratings}/>
 
           <Movie/>
-          <Comments/>
+          <Comment/>
         </Switch>
       </div>
     </Router>)

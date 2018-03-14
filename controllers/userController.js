@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../models/user')
 
+
 router.post('/movies', (req, res) => {
   const newMovies = new Movies({
     name: req.body.name

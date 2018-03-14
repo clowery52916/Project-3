@@ -4,38 +4,38 @@ const router = express.Router({
 });
 
 const Movie = require("../models/movie");
-const Comment = require("../models/comments");
+const Comments = require("../models/comments");
 
 router.get('/', function(req, res) {
-  Gif.find({}).exec(function(err, gifs){
+  Comments.find({comment_description}).exec(function(err, comments){
     if (err) { console.log(err); }
-    console.log(gifs)
-    res.json({ gifs })
+    console.log(comments)
+    res.json({ comments })
   });
 })
 
-router.post('/', function(req, res){
-  Gif.create( req.body )
-  .then(function(gif) {
-    console.log('succces', gif)
+router.post('/comments', function(req, res){
+  Comments.create( req.body )
+  .then(function(comment) {
+    console.log('succces', comment)
 
-    return Gif.find({}).exec()
+    return Comments.find({}).exec()
   })
-  .then(function(gifs) {
-    console.log(gifs)
+  .then(function(comments) {
+    console.log(comments)
     res.json({
-      data: gifs
+      data: comments
     })
   })
 });
 
 router.put('/:id', function(req, res) {
-  Gif.update({_id: req.params.id}, req.body)
+  Comments.update({_id: req.params.id}, req.body)
    .then(function() {
-     return Gif.find({}).exec();
+     return Comments.find({}).exec();
    })
-   .then(function(gifs) {
-     res.json({message: "succesfully updated", gifs: gifs})
+   .then(function(comments) {
+     res.json({message: "succesfully updated", comments: comments})
    })
    .catch(function(err) {
      res.json(400, err)
@@ -45,10 +45,10 @@ router.put('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
   var id = req.params.id;
 
-  Gif.remove({_id: id}, function(error) {
-    if (error) response.json({message: 'Could not delete gif b/c: ' + error});
+  Comments.remove({_id: id}, function(error) {
+    if (error) response.json({message: 'Could not delete comment b/c: ' + error});
 
-    res.json({message: 'gif successfully deleted'});
+    res.json({message: 'comment successfully deleted'});
   })
 })
 
