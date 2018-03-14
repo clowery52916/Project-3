@@ -15,7 +15,6 @@ const CommentContainer = styled.div `
     margin: 5px 0;
     font-size: 1.5rem;
   }
-
 `
 export default class CommentView extends Component {
 

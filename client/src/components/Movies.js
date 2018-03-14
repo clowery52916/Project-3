@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import Ratings from './Ratings'
+import Movie from './Movie'
 
 export default class Movies extends Component {
 
@@ -25,7 +26,7 @@ export default class Movies extends Component {
     return (
 
       <div>
-      <h1>Best Pictures</h1>
+      <h1>Best Picture!</h1>
         {this.state.movies.map(movie =>
           <Link key={movie._id} to={`/movies/${movie._id}`} cons={this.state.movie}>
               <h3>{movie.title}</h3>

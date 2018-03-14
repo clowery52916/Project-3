@@ -34,10 +34,11 @@
     "mongo": "^0.1.0",
     "mongoose": "^5.0.9",
     "morgan": "^1.9.0",
-    "nodemon": "^1.17.1",
+    "nodemon": "^1.17.2",
     "npm": "^5.7.1",
     "omdb": "^0.8.0",
     "react-material-design": "^0.3.6",
+    "react-star-rating-input": "^6.2.0",
     "semantic-ui-react": "^0.78.3"
   }
 }

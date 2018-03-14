@@ -12,7 +12,7 @@ export default class Navbar extends Component {
         </Switch>
         <br/>
         <Switch>
-          <Link to="/api/movies/:id/comments" className="Comments">Comments
+          <Link to="/comments" className="Comments">Comments
 
           </Link>
         </Switch>

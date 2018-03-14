@@ -28,13 +28,15 @@ export default class User extends Component {
       <div>
         <h1>Sign Up for your ticke to the Red Carpet!</h1>
         <form onSubmit={this.saveNewUser}>
-          <styledDiv>
+
             <label htmlFor="name">User Name</label>
-            <input type="text" name="name" value='submit'
+
+             <input type="text" name="name" value='submit'
               value={this.state.name}
               onChange={this.handleChange}
+
             />
-          </styledDiv>
+
           <button type="Link">
           <Link to="/movies" className="Movies">Sign In!
           </Link>

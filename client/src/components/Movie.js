@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import Movies from './Movies'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
-import Comment from './Comment'
 import styled from 'styled-components'
 import NewComment from './NewComment'
-import Ratings from './Ratings'
+import CommentView from './CommentView'
+import Comment from './Comment'
+
+
+
 
 const CommentContainer = styled.div `
   width: 225px;
@@ -26,20 +29,22 @@ export default class Movie extends Component {
   }
 
   componentWillMount() {
-    this.getAllMovies()
+    this.getSingleMovie()
   }
 
-  getAllMovies = async () => {
+  getSingleMovie = async () => {
     const res = await axios.get('/api/movies/:id')
-    this.setState({movie: res.data})
+    this.setState({movie_id: res.data})
 
-  }
+}
 
   render() {
-
     return (<div>
+          <h1>FUCK ME!!!!!</h1>
+        <Comment/>
 
-      <NewComment/>
-      <Ratings/>
-    </div>
-    ) } }
+
+        </div>
+        )
+      }
+    }
