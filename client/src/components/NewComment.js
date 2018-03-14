@@ -10,7 +10,7 @@ export default class NewComment extends Component {
   };
 
   createNewComment = payload => {
-    axios.post(`/api/movies`, payload).then(res => {
+    axios.post(`/api/comment/:id`, payload).then(res => {
       console.log(res.data)
       const commentId = res.data._id
       this.setState({redirectToCommentView: commentId})
@@ -48,7 +48,7 @@ export default class NewComment extends Component {
         <label htmlFor='commentDescription'>Comment:
         </label>
         <textarea type='text' name='commentDescription' value={this.state.commentDescription} onChange={this.handleChange}/>
-        <button type='submit'>Post New Comment</button>
+        <button type='onChange ' onChange={this.handleChange}>Post New Comment</button>
       </form>
     </div>);
   }

@@ -1,18 +1,18 @@
 const express = require('express')
 const router = express.Router({mergeParams: true})
-const {Comment} = require('../models/comments')
+const {Comments} = require('../models/comments')
 
 
 //read
 router.get('/', (req, res) => {
-  Comment.find().then((comments) => {
+  Comments.find().then((comments) => {
     res.send(comments)
   })
 })
 
 //show
 router.get('/', (req, res) => {
-  NewComment.findById(req.params.commentId).then((comment) => {
+  Comments.findById(req.params.commentId).then((comment) => {
     res.send(comment)
   })
 })
@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 
 //update
 router.patch('/', (req, res) => {
-  NewComment.findByIdAndUpdate(req.params.commentId, {
+  Comments.findByIdAndUpdate(req.params.commentId, {
     commentName: req.body.name,
     aboutMe: req.body.aboutMe
 
@@ -40,7 +40,7 @@ router.patch('/', (req, res) => {
 
 //delete
 router.delete('/:id', (req, res) => {
-  NewComment.findByIdAndRemove(req.params.commentId).then(() => {
+  Comments.findByIdAndRemove(req.params.commentId).then(() => {
     res.redirect('/api/comments')
   })
 })
