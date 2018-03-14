@@ -17,6 +17,7 @@ export default class Movies extends Component {
   getAllMovies = async () => {
     const res = await axios.get('/api/movies')
     this.setState({movies: res.data})
+
   }
 
 

@@ -9,7 +9,6 @@ import Ratings from './components/Ratings'
 import Comment from './components/Comment'
 import Movie from './components/Movie'
 
-
 export default class App extends Component {
 
   render() {
@@ -21,7 +20,7 @@ export default class App extends Component {
           <Route exact="exact" path='/movies' component={Movies}/>
           <Route exact="exact" path='/movie/:id' component={Movie}/>
           <Route exact="exact" path='/movie/:id/comment ' component={Comment}/>
-          <Route exact="exact" path= '/movie/:id/ratings' component={Ratings}/>
+          <Route exact="exact" path='/movie/:id/ratings' component={Ratings}/>
 
           <Movie/>
           <Comment/>

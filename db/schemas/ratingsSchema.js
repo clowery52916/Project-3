@@ -1,12 +1,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const ratingsSchema = new Schema({
-  rate: String,
-})
+const ratingsSchema = new Schema({rate: String})
 
-
-
-module.exports ={
+module.exports = {
   ratingsSchema
 }
