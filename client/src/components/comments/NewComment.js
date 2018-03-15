@@ -7,8 +7,8 @@ import Comment from './Comment'
 export default class NewComment extends Component {
 
   state = {
-      comment_title:'',
-      comment_description: ''
+      title:'',
+      description: ''
   };
 
   componentWillMount() {

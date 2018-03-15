@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
-import Movie from './Movie'
+import Movie from '../movies/Movie'
 import NewComment from './NewComment'
 import styled from 'styled-components'
 import {Redirect} from 'react-router-dom'
@@ -15,7 +15,7 @@ const CommentContainer = styled.div `
 `
 
 
-  export default class Comment extends Component {
+  export default class CommentView extends Component {
 
     state = {
       comment: '',
@@ -26,12 +26,12 @@ const CommentContainer = styled.div `
     }
 
     getComment = async () => {
-      const res = await axios.get('/api/comments/:id')
+      const res = await axios.get('/api/comments')
       this.setState({movie_id: res.data})
 
 }
     createNewComment = async() => {
-      const res = await axios.post('/api/comments/:id')
+      const res = await axios.post('/api/comments/:commentId')
       this.setState({comments: res.data.comment})
     }
 

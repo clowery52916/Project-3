@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movie from './Movie'
+import Movie from '../movies//Movie'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import styled from 'styled-components'
 

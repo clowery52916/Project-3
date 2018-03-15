@@ -3,16 +3,29 @@ const router = express.Router();
 
 const User = require('../models/UserModel')
 
-router.get ('/', (req, res) => {
-  const saveNewUser = new User({
-    name: req.body.name
-  })
-})
-router.post('/movies', (req, res) => {
-  const newMovies = new Movies({
-    name: req.body.name
+router.get('/', (req, res) => {
+  User.find().then((users) => {
+    res.send(users)
   })
 })
 
+router.post('/', (req, res) => {
+  const newUser = new User({
+    name: req.body.name
+  })
+
+  newUser.save().then(() => {
+    res.redirect('/api/user')
+  })
+})
+
+router.get('/:id', (req, res) => {
+  User.findById(req.params.id).then((user) => {
+    res.send(user)
+  }).catch((err) => {
+    res.status(500)
+    res.send(err)
+  })
+})
 
 module.exports = router

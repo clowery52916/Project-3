@@ -12,8 +12,8 @@ router.get('/', (req, res) => {
 })
 router.get('/:id', async (req, res) => {
   try {
-    const Movie = req.params.id
-    const movie = await Movies.findById(Movies.title)
+    const Movies = req.params.id
+    const movies = await Movies.findById(Movies.title)
     res.send(movie)
   } catch (err) {
     console.log(err)
