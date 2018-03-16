@@ -12,6 +12,7 @@ import NewComment from './components/comments/NewComment'
 import CommentView from './components/comments/CommentView'
 import MovieComment from './components/movies/MovieComment'
 import Login from './components/users/Login'
+import Show from './components/comments/Show'
 
 export default class App extends Component {
 
@@ -27,7 +28,7 @@ export default class App extends Component {
           <Route exact='exact' path='/movies/:movieId/users' component={User}/>
           <Route exact='exact' path='/movie' component={MovieComment}/>
           <Route exact="exact" path='/comments' component={Comment}/>
-          <Route exact="exact" path='/comment' component={NewComment}/>
+          <Route exact="exact" path='/comment/edit' component={Show}/>
           <Route exact="exact" path='ratings' component={Ratings}/>
 
           <Movie/>

@@ -49,11 +49,11 @@ export default class NewComment extends Component {
          onChange={this.handleChange}
        />
        <br/>
-       <label htmlFor='aboutMe'>About Me: </label>
+       <label htmlFor='aaaahhh'>Whhhhaaaaattt: </label>
        <input
            type='text'
-           name='aboutMe'
-           value={this.state.aboutMe}
+           name='aaahhhhh'
+           value={this.state.comment}
            onChange={this.handleChange}
        />
        <button type='submit'>Create New User</button>

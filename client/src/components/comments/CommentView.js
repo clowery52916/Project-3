@@ -47,7 +47,7 @@ export default class CommentView extends Component {
   }
 
   updateComment = async (comment) => {
-    const res = await axios.patch(`/api/comment/${comment.id}/comment`)
+    const res = await axios.patch(`/api/comments/${comment.id}/comment`)
     this.setState({comments: res.data.comment})
   }
 

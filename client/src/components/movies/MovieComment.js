@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
+import Comment from '../comments/Comment'
+
 
 export default class EditComment extends Component {
 
@@ -8,6 +10,7 @@ export default class EditComment extends Component {
 
     return (<div>
       <h4>Edit Comment</h4>
+      <Comment/>
       <form onSubmit={this.props.updateComment}>
         <label htmlFor="commentTitle">Movie Title:
         </label>

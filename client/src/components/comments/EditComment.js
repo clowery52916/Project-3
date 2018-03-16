@@ -6,7 +6,7 @@ import Movie from '../movies/Movie'
 export default class EditComment extends Component {
 
   render() {
-    const updateComment = this.props.comment
+    const updateComment = this.props.comment._id
 
     return (
             <div>
@@ -17,7 +17,7 @@ export default class EditComment extends Component {
                     value={this.props.comment}
                 />
                 <br />
-                <label htmlFor='aboutMe'>commy: </label>
+                <label htmlFor='aaaahhh'>commy: </label>
                 <input name='description'
                     onChange={this.props.handleChange}
                     value={this.props.comment}
