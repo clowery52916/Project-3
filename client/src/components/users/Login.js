@@ -38,8 +38,7 @@ export default class Login extends Component {
       return <Redirect to={`/users/${this.state.redirectToUser}`}/>
     }
     return (<div>
-      <h1>Welcome Back, Please select a {User.name}
-        below</h1>
+  
       <ul>
         {
           this.state.users.map((user) => {

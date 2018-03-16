@@ -7,12 +7,16 @@ const NavBarContainer = styled.div `
   justify-content: space-around;
   padding: 6px;
   background: red;
+  text-align: center;
+
 `
+
+
 
 export default class Navbar extends Component {
   render() {
     return (<NavBarContainer>
-      <h1>Red Carpet Rundown</h1>
+      <h1>The Red Carpet Run Down!</h1>
       <ul>
         <li>
           <Link to="/comments">Comments</Link>

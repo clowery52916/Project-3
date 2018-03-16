@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom'
 import Comment from './Comment'
 
 
+
 const CommentContainer = styled.div `
   display: flex;
   width: 95vw;
@@ -34,6 +35,7 @@ export default class CommentView extends Component {
            </div>
          );
        })}
+
      </div>
   )
 }

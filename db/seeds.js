@@ -36,7 +36,7 @@ mongoose.connection.on('error', (error) => {
   const bestPicture = new Movies({
   title: 'The Shape of Water',
   description: 'lorem-ipsum',
-  moviePoster: 'https://imgur.com/pMRc7hS',
+  moviePoster: 'https://i.imgur.com/pMRc7hS.jpg',
   comments:[greatMovie, alrightMovie]})
 
 const runnerUp = new Movies({

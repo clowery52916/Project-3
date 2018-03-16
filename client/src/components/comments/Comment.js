@@ -87,31 +87,28 @@ export default class Comment extends Component {
       console.log(err);
     }).then(() => {
       this.props.populatePage();
-    });
-  };
+    })
+  }
 
   handleChange = event => {
     const newComment = {
       ...this.state.comment
-    };
+    }
     newComment[event.target.title] = event.target.value
     this.setState({comment: newComment});
     console.log(event.target.value);
-  };
+  }
 
   render() {
     if (this.state.redirect === true) {
       return <Redirect to="api/movies/:Id/comments"/>;
     }
-    return (<div>
+    return (
 
-      {/* <h1>{this.props.match.params.comment}</h1> */}
-      {/* //this is where I am having issues, calling objects for title and description
-         //need to figure this out ASAP!!!!!!
-         //Also need to get the actual object to post AND delete */
-      }
+
+      <div>
       <p>
-        My Post
+        Post on All  Movies
       </p>
       <form onSubmit={this.handleSubmit}>
         <CommentContainer>

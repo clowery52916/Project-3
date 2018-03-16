@@ -14,10 +14,10 @@ export default class EditComment extends Component {
                 <form onSubmit={this.props.updateComment}>
                     <input name='title'
                     onChange={this.props.handleChange}
-                    value={this.props.comment.title}/>
+                    value={this.props.comment}/>
                     <input name='description'
                     onChange={this.props.handleChange}
-                    value={this.props.comment.description}/>
+                    value={this.props.comment}/>
                 <button onSubmit={this.props.handleSubmit}>Update Comment</button>
                 </form>
             </ComponentContainer>

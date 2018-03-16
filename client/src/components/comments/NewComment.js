@@ -11,7 +11,7 @@ export default class NewComment extends Component {
    comment: {
 
    }
- };
+ }
 
  componentWillMount() {
    this.getMovieComments()
@@ -36,18 +36,18 @@ export default class NewComment extends Component {
    }).catch((err)=>{
        console.log(err)
    })
- };
+ }
 
  handleChange = event => {
-   const newState = { ...this.state };
-   newState[event.target.name] = event.target.value;
-   this.setState(newState);
- };
+   const newState = { ...this.state }
+   newState[event.target.name] = event.target.value
+   this.setState(newState)
+ }
 
  handleSubmit = event => {
-   event.preventDefault();
-   this.newComment(this.state);
- };
+   event.preventDefault()
+   this.newComment(this.state)
+ }
 
  render() {
    if (this.state.redirectToComment){
@@ -65,7 +65,7 @@ export default class NewComment extends Component {
          onChange={this.handleChange}
        />
        <br/>
-       <label htmlFor='stuff'>Whhhhaaaaattt: </label>
+       <label htmlFor='stuff'> </label>
        <input
            type='text'
            name='stuff'
@@ -76,6 +76,6 @@ export default class NewComment extends Component {
        </form>
 
      </div>
-   );
+   )
  }
 }
