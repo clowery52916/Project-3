@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Ratings = require('../models/RatingModel')
-
+const {Ratings} = require('../models/RatingModel')
 
 router.get('/ratings/:id', function(req, res) {
   Ratings.create(req.body).then(function(rating) {

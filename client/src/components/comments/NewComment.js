@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import {Redirect} from 'react-router-dom'
-import CommentView from './CommentView'
 import Comment from './Comment'
 
 export default class NewComment extends Component {
@@ -11,7 +10,7 @@ export default class NewComment extends Component {
  };
 
     newComment = payload => {
-   axios.post(`/api/comment`, payload).then(res => {
+   axios.post(`/api/comment/:id`, payload).then(res => {
    console.log(res.data)
      const newCommentId = res.data._id
      this.setState({ redirectToComment: newCommentId })
@@ -35,7 +34,7 @@ export default class NewComment extends Component {
 
  render() {
    if (this.state.redirectToComment){
-       return <Redirect to={`/users/${this.state.redirectToComment}`}/>
+       return <Redirect to={`/comment/${this.state.redirectToComment}`}/>
    }
    return (
      <div>
@@ -49,14 +48,14 @@ export default class NewComment extends Component {
          onChange={this.handleChange}
        />
        <br/>
-       <label htmlFor='aaaahhh'>Whhhhaaaaattt: </label>
+       <label htmlFor='stuff'>Whhhhaaaaattt: </label>
        <input
            type='text'
-           name='aaahhhhh'
+           name='stuff'
            value={this.state.comment}
            onChange={this.handleChange}
        />
-       <button type='submit'>Create New User</button>
+       <button type='submit'>Create New Comment</button>
        </form>
      </div>
    );

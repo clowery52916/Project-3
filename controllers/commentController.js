@@ -1,7 +1,15 @@
 const express = require('express')
 const router = express.Router({mergeParams: true})
+const {Movie} = require('../models/MovieModel')
 
-const Comment = require('../models/CommentModel')
+const {Comment} = require('../models/CommentModel')
+
+router.get('/', (req, res) => {
+  const movie = Movie.findById(req.params.movieId)
+    Comment.find().then((comments) => {
+        res.json(comments)
+    })
+})
 
 router.post('/', (req, res) => {
   console.log(req.params.commentId)
@@ -14,7 +22,7 @@ router.post('/', (req, res) => {
   })
 })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:commentId', (req, res) => {
   Comment.findById(req.params.commentId).then((comment) => {
     const commentToUpdate = comment.comments.id(req.params.id)
     commentToUpdate.title = req.body.title
@@ -25,8 +33,8 @@ router.patch('/:id', (req, res) => {
   })
 })
 
-router.delete('/:id', (req, res) => {
-  Comment.findById(req.params.commentId).then((comment) => {
+router.delete('/:commentId', (req, res) => {
+  Comment.findByIdAndRemove(req.params.commentId).then((comment) => {
     comment.comments.id(req.params.id).remove()
     return comment.save()
   }).then((savedComment) => {

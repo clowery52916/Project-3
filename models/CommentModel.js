@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {commentsSchema} = require('../db/schemas/commentsSchema')
+const {commentSchema} = require('../db/schemas/commentSchema')
 
 const Comment = mongoose.model('comment', commentSchema)
 

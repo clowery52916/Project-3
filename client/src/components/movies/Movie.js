@@ -10,10 +10,7 @@ import EditComment from '../comments/EditComment'
 
 export default class Movie extends Component {
   state = {
-    movie: {
-      title: "",
-      description: ""
-    },
+    movie: {},
     edit: false,
     delete: false,
     redirect: false
@@ -23,8 +20,10 @@ export default class Movie extends Component {
   }
 
   getMovie = async () => {
-    const res = await axios.get('/api/movies')
-    this.setState({movie_id: res.data})
+    const movieId = this.props.match.params.Id
+    const res = await axios.get(`/api/movies/${movieId}`)
+    console.log(res)
+    this.setState({movie: res.data})
 
   }
   // createNewComment = async() => {
@@ -36,20 +35,20 @@ export default class Movie extends Component {
     console.log(id)
     const newMovie = [...this.state.movie]
     console.log(newMovie)
-    const movieChange = newMovie.find(comment => comment._id === id)
+    const movieChange = newMovie.find(movie => movie._id === id)
     movieChange[event.target.name] = event.target.value
 
     this.setState({movie: newMovie})
   }
 
-  // updateComment = async(comment) => {
-  //   const res = await axios.patch(`/api/movie/${comment.id}/comment`)
-  //   this.setState({movie: res.data.comment})
-  // }
+  updateMovie = async(movie) => {
+    const res = await axios.patch(`/api/movie/${movie.id}`)
+    this.setState({movie: res.data.movie})
+  }
 
   deleteMovie = () => {
     const movieId = this.props.match.params.movieId
-    axios.delete(`/api/comment/${movieId}/comment/${movieId}`).then(res => {
+    axios.delete(`/api/movie/${movieId}/movie/${movieId}`).then(res => {
       this.setState({movie: res.data.movie})
       this.getMovie()
     })

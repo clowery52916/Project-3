@@ -13,6 +13,8 @@ import CommentView from './components/comments/CommentView'
 import MovieComment from './components/movies/MovieComment'
 import Login from './components/users/Login'
 import Show from './components/comments/Show'
+import EditComment from './components/comments/EditComment'
+
 
 export default class App extends Component {
 
@@ -23,14 +25,21 @@ export default class App extends Component {
         <Switch>
 
           <Route exact="exact" path="/" component={Login}/>
-          <Route exact="exact" path='/movies' component={Movies}/>
-          <Route exact="exact" path='/movies/:movieId' component={Movie}/>
-          <Route exact='exact' path='/movies/:movieId/users' component={User}/>
-          <Route exact='exact' path='/movie' component={MovieComment}/>
-          <Route exact="exact" path='/comments' component={Comment}/>
-          <Route exact="exact" path='/comment/edit' component={Show}/>
-          <Route exact="exact" path='ratings' component={Ratings}/>
 
+          <Route exact='exact' path='/movies/:movieId/users' component={User}/>
+            <Route exact="exact" path='/comments' component={Comment}/>
+                <Route exact ='exact' path ='/api/comments/:id' component={CommentView}/>
+                {/* <Route exact='exact' path='/comments/:id/delete' component={DeleteComments}/> */}
+                <Route exact='exact' path='/comments/:id/edit' componenet={EditComment}/>
+                <Route exact='exact' path='/comments/:id' component={NewComment}/>
+                <Route exact='exact' path='/comments/new' component={Show}/>
+                <Route exact="exact" path='/movie/:Id/' component={Movie}/>
+                {/* //this is the actual id of the movie & what we need to call on when we are trying to access specific movie */}
+                <Route exact='exact' path='/movie' component={MovieComment}/>
+                <Route exact="exact" path='/movies' component={Movies}/>
+                <Route exact="exact" path='ratings' component={Ratings}/>
+
+          <User/>
           <Movie/>
           <Comment/>
         </Switch>

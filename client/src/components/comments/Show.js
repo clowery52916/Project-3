@@ -16,7 +16,7 @@ export default class Show extends Component {
   }
 
     componentDidMount() {
-      axios.get('/api/comment/' + this.props.match.params.id)
+      axios.get('/api/comment/new' + this.props.match.params.id)
       .then(res => {
         this.setState({comment: res.data})
       })

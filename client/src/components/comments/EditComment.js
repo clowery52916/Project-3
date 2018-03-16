@@ -1,30 +1,26 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import Comment from './Comment'
-import Movie from '../movies/Movie'
+import ComponentContainer from './Comment'
+
 
 export default class EditComment extends Component {
 
   render() {
-    const updateComment = this.props.comment._id
+    const updateComment = this.props.commentId
 
     return (
-            <div>
-                <form onSubmit={this.props.updateUser}>
-                <label htmlFor='title'>Fuck THIS!!!: </label>
-                <input name='title'
+            <ComponentContainer>
+                <form onSubmit={this.props.updateComment}>
+                    <input name='title'
                     onChange={this.props.handleChange}
-                    value={this.props.comment}
-                />
-                <br />
-                <label htmlFor='aaaahhh'>commy: </label>
-                <input name='description'
+                    value={this.props.comment.title}/>
+                    <input name='description'
                     onChange={this.props.handleChange}
-                    value={this.props.comment}
-                />
-                <button onClick={this.props.handleSubmit}>Update Comment</button>
+                    value={this.props.comment.description}/>
+                <button onSubmit={this.props.handleSubmit}>Update Comment</button>
                 </form>
-            </div>
+            </ComponentContainer>
 
 )
 }
