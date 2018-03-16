@@ -13,21 +13,45 @@ const postContainer = styled.div `
 
 export default class MovieComment extends Component {
 
+    state = {
+      newComment: {
+        title: '',
+        description: '',
+      }
+    }
+
+  handleMovieCommentChange = (event) => {
+    //console.log(id)
+    const attribute = event.target.name
+    //console.log(attribute)
+    const comment = {...this.state.newComment}
+    console.log(comment)
+    //console.log(comment)
+    //const movieChange = newMovie.find(movie => movie._id === id)
+    comment[attribute] = event.target.value
+
+    this.setState({ newComment: comment })
+  }
+
+  handleSubmit = async (event) =>{
+    //event.preventDefault()
+    this.props.createNewComment(this.state.newComment)
+  }
+
   render() {
-    const movieComment = this.props.comment
 
     return (<div>
       <h4>Post about this Movie! </h4>
 
-      <form onSubmit={this.props.updateMovieComment}>
+      <form onSubmit={this.handleSubmit()}>
 
-        <textarea type="submit" placeholder="Movie Title"  onChange={this.props.handleChange}/>
+        <textarea type="submit" placeholder="Movie Title" name='title' value={this.state.newComment.title} onChange={this.handleMovieCommentChange}/>
         <br/>
         <br/>
 
-        <textarea type='submit' placeholder='Tell us your thoughts!'  onChange={this.props.handleChange}/>
-        <button type='onChange ' onChange={this.props.handleChange}>Submit</button>
+        <textarea type='submit' placeholder='Tell us your thoughts!' name='description' value={this.state.newComment.description} onChange={this.handleMovieCommentChange}/>
+        <button type='onChange'>Create</button>
       </form>
-    </div>);
+    </div>)
   }
 }

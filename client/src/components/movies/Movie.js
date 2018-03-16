@@ -11,10 +11,13 @@ import MovieComment from './MovieComment'
 export default class Movie extends Component {
   state = {
     movie: {},
-    edit: false,
-    delete: false,
-    redirect: false
-  };
+    comments: []
+    //edit: false,
+    //delete: false,
+  //  redirect: false,
+    //comments:[],
+  }
+
   componentWillMount() {
     this.getMovie()
   }
@@ -22,29 +25,24 @@ export default class Movie extends Component {
   getMovie = async () => {
     const movieId = this.props.match.params.Id
     const res = await axios.get(`/api/movies/${movieId}`)
-    console.log(res)
+    console.log(res.data)
     this.setState({movie: res.data})
 
   }
-  // createNewComment = async() => {
-  //   const res = await axios.post('/api/movies/:moviesId')
-  //   this.setState({movie: res.data.movie})
-  // }
-
-  handleMovieChange = (event, id) => {
-    console.log(id)
-    const newMovie = [...this.state.movie]
-    console.log(newMovie)
-    const movieChange = newMovie.find(movie => movie._id === id)
-    movieChange[event.target.name] = event.target.value
-
-    this.setState({movie: newMovie})
-  }
-
-  updateMovieComment = async(movie) => {
-    const res = await axios.patch(`/api/movie/${movie.id}`)
+  createNewComment = async(newComment) => {
+    const movieId = this.props.match.params.Id
+    const res = await axios.post(`/api/movies/${movieId}/comments/`, {comments: newComment})
     this.setState({movie: res.data.movie})
+    this.getMovie()
   }
+
+
+
+  // updateMovieComment = async(comments) => {
+    // const movieId = this.props.match.params.Id
+    //const res = await axios.post(`/api/movie/${movieId}/comment/${#}`)
+    //this.setState({comment: res.data.comment})
+  // }
 
   deleteMovie = () => {
     const movieId = this.props.match.params.movieId
@@ -59,12 +57,12 @@ export default class Movie extends Component {
       return <Redirect to="/"/>;
     }
     return (<div>
-      {/* <NewComment/> */}
-      <h1>{this.state.movie.title}</h1>
+      {/* <NewComment/> */} */}
+      {/* <h1>{this.state.movie.title}</h1>
       <p>
-        <strong>Movie Title
-        </strong>
-        {this.state.movie.description}
+          Movie Title
+
+        {this.state.movie.title}
       </p>
       <button onClick={this.edit}>Edit Movie Info</button>
       <button onClick={this.delete}>Delete Movie</button>
@@ -80,14 +78,14 @@ export default class Movie extends Component {
           : null
       }
 
-      {
+      {/* {
         this.state.edit
-          ? (<MovieComment handleSubmit={this.handleSubmit} movie={this.state.movie} handleChange={this.handleMovieChange} updateComment={this.updateMovieComment}/>)
+          ? (<MovieComment  />)
           : null
-      }
+      } */}
       <br/>
 
-      <MovieComment />
+      <MovieComment  createNewComment={this.createNewComment}/>
 
 
     </div>)

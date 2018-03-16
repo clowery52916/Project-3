@@ -12,13 +12,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req.params.commentId)
-  Comment.findById(req.params.commentId).then((comment) => {
-    const newComment = new Comment({})
-    comment.comments.push(newComment)
-    return comment.save()
-  }).then((savedComment) => {
-    res.json(savedComment)
+  console.log(req.params.movieId)
+  Movie.findById(req.params.movieId).then((movie) => {
+    console.log(movie.comments)
+    const newComment = new Comment(req.body)
+    console.log(newComment)
+    comment.movie.push(newComment)
+    return movie.save()
+  }).then((updatedMovie) => {
+    res.json(updatedMovie)
   })
 })
 
