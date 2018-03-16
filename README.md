@@ -11,6 +11,8 @@ App deployed on heroku: https://thawing-woodland-29949.herokuapp.com
 
 Link to Trello: https://trello.com/b/uEG96NqO/wdi-project-3
 
+Link to GitHub: https://github.com/clowery52916/Project-3.git
+
 Pictures below are my ERD and WIREFRAME drawn out:
 ERD: https://imgur.com/lKfgMQk
 Wireframe: https://imgur.com/LrRrrgo
