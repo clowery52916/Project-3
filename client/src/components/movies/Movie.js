@@ -14,7 +14,7 @@ export default class Movie extends Component {
     comments: []
     //edit: false,
     //delete: false,
-  //  redirect: false,
+    //  redirect: false,
     //comments:[],
   }
 
@@ -29,19 +29,17 @@ export default class Movie extends Component {
     this.setState({movie: res.data})
 
   }
-  createNewComment = async(newComment) => {
+  createNewComment = async (newComment) => {
     const movieId = this.props.match.params.Id
     const res = await axios.post(`/api/movies/${movieId}/comments/`, {comments: newComment})
     this.setState({movie: res.data.movie})
     this.getMovie()
   }
 
-
-
   // updateMovieComment = async(comments) => {
-    // const movieId = this.props.match.params.Id
-    //const res = await axios.post(`/api/movie/${movieId}/comment/${#}`)
-    //this.setState({comment: res.data.comment})
+  // const movieId = this.props.match.params.Id
+  //const res = await axios.post(`/api/movie/${movieId}/comment/${#}`)
+  //this.setState({comment: res.data.comment})
   // }
 
   deleteMovie = () => {
@@ -57,8 +55,8 @@ export default class Movie extends Component {
       return <Redirect to="/"/>;
     }
     return (<div>
-      {/* <NewComment/> */} */}
-      {/* <h1>{this.state.movie.title}</h1>
+      {/* <NewComment/> */}
+      */} {/* <h1>{this.state.movie.title}</h1>
       <p>
           Movie Title
 
@@ -68,26 +66,21 @@ export default class Movie extends Component {
       <button onClick={this.delete}>Delete Movie</button>
 
       {
-        this.state.delete
-          ? (<div>
-            <p>Are you sure?</p>
-            <br/>
-            <button onClick={this.deleteMovie}>Delete Movie</button>{" "}
-            <button onClick={this.delete}>Do not Delete</button>
-          </div>)
-          : null
-      }
-
-      {/* {
+      this.state.delete
+        ? (<div>
+          <p>Are you sure?</p>
+          <br/>
+          <button onClick={this.deleteMovie}>Delete Movie</button>{" "}
+          <button onClick={this.delete}>Do not Delete</button>
+        </div>)
+        : null
+    } {/* {
         this.state.edit
           ? (<MovieComment  />)
           : null
-      } */}
-      <br/>
+      } */
+    } < br /> <MovieComment createNewComment={this.createNewComment}/>
 
-      <MovieComment  createNewComment={this.createNewComment}/>
-
-
-    </div>)
+  </div>)
   }
 }

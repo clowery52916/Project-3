@@ -10,18 +10,16 @@ const {User} = require('../models/UserModel')
 //   })
 // })
 
-
 router.get('/', async (req, res) => {
   console.log('GETTING ALL USERS')
-  try{
-    const users  = await User.find({})
+  try {
+    const users = await User.find({})
     res.json(users)
-  }catch (err) {
+  } catch (err) {
     console.log('error getting all users', err)
     res.send(err)
   }
 })
-
 
 router.get('/id', async (req, res) => {
   console.log('SHOW ROUTE HIT')

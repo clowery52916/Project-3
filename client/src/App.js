@@ -15,7 +15,6 @@ import Show from './components/comments/Show'
 import EditComment from './components/comments/EditComment'
 import Movie from './components/movies/Movie'
 
-
 export default class App extends Component {
 
   render() {
@@ -27,19 +26,16 @@ export default class App extends Component {
           <Route exact="exact" path="/" component={Login}/>
 
           <Route exact='exact' path='/users' component={User}/>
-            <Route exact="exact" path='/comments' component={Comment}/>
-                <Route exact ='exact' path ='/api/movies/:Id/comments' component={CommentView}/>
-                {/* <Route exact='exact' path='/comments/:id/delete' component={DeleteComments}/> */}
-                <Route exact='exact' path='/comments/:id/edit' componenet={EditComment}/>
-                <Route exact='exact' path='/comments/:id' component={NewComment}/>
-                <Route exact='exact' path='/comments/new' component={Show}/>
-                  <Route exact="exact" path='/movies' component={Movies}/>
-                <Route exact="exact" path='/movies/:Id/' component={Movie}/>
-                {/* //this is the actual id of the movie & what we need to call on when we are trying to access specific movie */}
-                <Route exact='exact' path='/movies/:Id/comments' component={MovieComment}/>
+          <Route exact="exact" path='/comments' component={Comment}/>
+          <Route exact='exact' path='/api/movies/:Id/comments' component={CommentView}/> {/* <Route exact='exact' path='/comments/:id/delete' component={DeleteComments}/> */}
+          <Route exact='exact' path='/comments/:id/edit' componenet={EditComment}/>
+          <Route exact='exact' path='/comments/:id' component={NewComment}/>
+          <Route exact='exact' path='/comments/new' component={Show}/>
+          <Route exact="exact" path='/movies' component={Movies}/>
+          <Route exact="exact" path='/movies/:Id/' component={Movie}/> {/* //this is the actual id of the movie & what we need to call on when we are trying to access specific movie */}
+          <Route exact='exact' path='/movies/:Id/comments' component={MovieComment}/>
 
-                <Route exact="exact" path='ratings' component={Ratings}/>
-
+          <Route exact="exact" path='ratings' component={Ratings}/>
 
           <Movies/>
           <Comment/>

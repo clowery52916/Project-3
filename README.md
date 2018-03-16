@@ -3,22 +3,20 @@
 This is an app that is like a social network for movie lovers! Get comments, ratings and information about all the movies
 you love! You and your friends can discuss why or why you should not see a particular movie.
 
-
-
 Application using MERN stack - MongoDB, Express, React.js and Node.js
 
-App deployed on heroku: https://thawing-woodland-29949.herokuapp.com
+App deployed on heroku: <https://thawing-woodland-29949.herokuapp.com>
 
-Link to Trello: https://trello.com/b/uEG96NqO/wdi-project-3
+Link to Trello: <https://trello.com/b/uEG96NqO/wdi-project-3>
 
-Link to GitHub: https://github.com/clowery52916/Project-3.git
+Link to GitHub: <https://github.com/clowery52916/Project-3.git>
 
 Pictures below are my ERD and WIREFRAME drawn out:
-ERD: https://imgur.com/lKfgMQk
-Wireframe: https://imgur.com/LrRrrgo
-Tree: https://imgur.com/NKKB4h9
-Flow: https://imgur.com/Khsvt7H
-Flow: https://imgur.com/kmXDIFn
+ERD: <https://imgur.com/lKfgMQk>
+Wireframe: <https://imgur.com/LrRrrgo>
+Tree: <https://imgur.com/NKKB4h9>
+Flow: <https://imgur.com/Khsvt7H>
+Flow: <https://imgur.com/kmXDIFn>
 
 Reflections on building this app:
 

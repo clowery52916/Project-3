@@ -103,25 +103,22 @@ export default class Comment extends Component {
     if (this.state.redirect === true) {
       return <Redirect to="api/movies/:Id/comments"/>;
     }
-    return (
-
-
-      <div>
+    return (<div>
       <p>
-        Post on All  Movies
+        Post on All Movies
       </p>
       <form onSubmit={this.handleSubmit}>
         <CommentContainer>
 
-         <input onChange={this.handleChange} type="text" placeholder="Movie Title" value={this.state.name}/>
+          <input onChange={this.handleChange} type="text" placeholder="Movie Title" value={this.state.name}/>
 
-        <div>
+          <div>
 
-          <textarea onChange={this.handleChange} type="text" placeholder="What are your thoughts?" value={this.state.description}/>
-        </div>
+            <textarea onChange={this.handleChange} type="text" placeholder="What are your thoughts?" value={this.state.description}/>
+          </div>
         </CommentContainer>
         <button>Submit</button>
-     </form>
+      </form>
       <button onClick={this.editShowView}>Edit Post</button>
       <button onClick={this.deleteShowView}>Delete Post</button>
 

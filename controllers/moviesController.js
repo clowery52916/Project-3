@@ -10,18 +10,16 @@ const {Movies} = require('../models/MoviesModel')
 //   })
 // })
 
-
 router.get('/', async (req, res) => {
   console.log('GETTING ALL MOVIES')
-  try{
-    const movies  = await Movies.find({})
+  try {
+    const movies = await Movies.find({})
     res.json(movies)
-  }catch (err) {
+  } catch (err) {
     console.log('error getting all movies', err)
     res.send(err)
   }
 })
-
 
 router.get('/:id', async (req, res) => {
   console.log('SHOW ROUTE HIT')
@@ -43,14 +41,8 @@ router.post('/', (req, res) => {
 
 module.exports = router
 
-
-
-
-
-
-
 // const express = require('express')
-// // const {Movie} = require('../models/Movie')
+//  const {Movie} = require('../models/Movie')
 // const {Comment} = require('../models/Comment')
 // const router = express.Router({mergeParams: true})
 //
@@ -61,17 +53,17 @@ module.exports = router
 //   })
 // })
 //
-// // router.post('/', (req, res) => {
-// //   Movie.findById(req.params.movieId).then((movie) => {
-// //     const newComment = new Comment({title: req.body.title description: req.body.description})
-// //     movie.comments.push(newComment)
-// //     return movie.save()
-// //   }).then((savedMovie) => {
-// //     res.json(savedMovie)
-// //   }).catch((err) => {
-// //     console.log(err)
-// //   })
-// // })
+//  router.post('/', (req, res) => {
+//    Movie.findById(req.params.movieId).then((movie) => {
+//      const newComment = new Comment({title: req.body.title description: req.body.description})
+//      movie.comments.push(newComment)
+//      return movie.save()
+//    }).then((savedMovie) => {
+//      res.json(savedMovie)
+//    }).catch((err) => {
+//      console.log(err)
+//    })
+//  })
 //
 // router.get('/:movieId', (req, res) => {
 //   Movie.findById(req.params.movieId).then((movie) => {

@@ -16,38 +16,32 @@ mongoose.connection.on('error', (error) => {
   process.exit(-1)
 })
 
-
 //comments seeds
-  const bestMovie = new Comment({
-    title: 'Best Movie ever!',
-    description: 'This movie was amazing'})
-  const alrightMovie = new Comment({
-    title: 'So so',
-    description: 'Wasn\'t super impressed'})
-  const greatMovie = new Comment({
-    title:'awesome!',
-    description: 'Classic for sure!!'})
+const bestMovie = new Comment({title: 'Best Movie ever!', description: 'This movie was amazing'})
+const alrightMovie = new Comment({title: 'So so', description: 'Wasn\'t super impressed'})
+const greatMovie = new Comment({title: 'awesome!', description: 'Classic for sure!!'})
 //user seeds
-  const court = new User ({
-    name: 'Courtney_Lowery',
-    comments: [bestMovie, greatMovie, alrightMovie]
-  })
-  //movie seeds
-  const bestPicture = new Movies({
+const court = new User({
+  name: 'Courtney_Lowery',
+  comments: [bestMovie, greatMovie, alrightMovie]
+})
+//movie seeds
+const bestPicture = new Movies({
   title: 'The Shape of Water',
   description: 'lorem-ipsum',
   moviePoster: 'https://i.imgur.com/pMRc7hS.jpg',
-  comments:[greatMovie, alrightMovie]})
+  comments: [greatMovie, alrightMovie]
+})
 
 const runnerUp = new Movies({
-    title: 'Three Billboards',
-    description: 'lorem-ipsum',
-    moviePoster: 'https://imgur.com/PSaqHQB',
-    comments:[greatMovie, bestMovie, alrightMovie]
-  })
+  title: 'Three Billboards',
+  description: 'lorem-ipsum',
+  moviePoster: 'https://imgur.com/PSaqHQB',
+  comments: [greatMovie, bestMovie, alrightMovie]
+})
 //removing comments
-  Movies.remove({})
-  .then(() => bestPicture.save() )
-  .then(() => runnerUp.save() )
-  .then(() => { console.log('movies saved') })
-  .then(() => { mongoose.connection.close()})
+Movies.remove({}).then(() => bestPicture.save()).then(() => runnerUp.save()).then(() => {
+  console.log('movies saved')
+}).then(() => {
+  mongoose.connection.close()
+})

@@ -6,9 +6,9 @@ const {Comment} = require('../models/CommentModel')
 
 router.get('/', (req, res) => {
   const movie = Movie.findById(req.params.movieId)
-    Comment.find().then((comments) => {
-        res.json(comments)
-    })
+  Comment.find().then((comments) => {
+    res.json(comments)
+  })
 })
 
 router.post('/', (req, res) => {

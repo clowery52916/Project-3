@@ -11,8 +11,6 @@ const NavBarContainer = styled.div `
 
 `
 
-
-
 export default class Navbar extends Component {
   render() {
     return (<NavBarContainer>

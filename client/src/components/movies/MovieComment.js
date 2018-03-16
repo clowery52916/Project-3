@@ -13,27 +13,29 @@ const postContainer = styled.div `
 
 export default class MovieComment extends Component {
 
-    state = {
-      newComment: {
-        title: '',
-        description: '',
-      }
+  state = {
+    newComment: {
+      title: '',
+      description: ''
     }
+  }
 
   handleMovieCommentChange = (event) => {
     //console.log(id)
     const attribute = event.target.name
     //console.log(attribute)
-    const comment = {...this.state.newComment}
+    const comment = {
+      ...this.state.newComment
+    }
     console.log(comment)
     //console.log(comment)
     //const movieChange = newMovie.find(movie => movie._id === id)
     comment[attribute] = event.target.value
 
-    this.setState({ newComment: comment })
+    this.setState({newComment: comment})
   }
 
-  handleSubmit = async (event) =>{
+  handleSubmit = async (event) => {
     //event.preventDefault()
     this.props.createNewComment(this.state.newComment)
   }
@@ -41,7 +43,8 @@ export default class MovieComment extends Component {
   render() {
 
     return (<div>
-      <h4>Post about this Movie! </h4>
+      <h4>Post about this Movie!
+      </h4>
 
       <form onSubmit={this.handleSubmit()}>
 
