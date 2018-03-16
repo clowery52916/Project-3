@@ -1,26 +1,32 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import Comment from '../comments/Comment'
+import styled from 'styled-components'
 
+const postContainer = styled.div `
+  display: flex;
+  width: 95vw;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: space-around;
+`
 
-export default class EditComment extends Component {
+export default class MovieComment extends Component {
 
   render() {
-    const editComment = this.props.comment
+    const movieComment = this.props.comment
 
     return (<div>
-      <h4>Edit Comment</h4>
-      <Comment/>
-      <form onSubmit={this.props.updateComment}>
-        <label htmlFor="commentTitle">Movie Title:
-        </label>
-        <input type="submit" name="commentTitle" value={this.props.comment.editComment} onChange={this.props.handleChange}/>
+      <h4>Post about this Movie! </h4>
+
+      <form onSubmit={this.props.updateMovieComment}>
+
+        <textarea type="submit" placeholder="Movie Title"  onChange={this.props.handleChange}/>
         <br/>
         <br/>
-        <label htmlFor='commentDescription'>Comment:
-        </label>
-        <textarea type='submit' name='commentDescription' value={this.props.comment.comment_description} onChange={this.props.handleChange}/>
-        <button type='onChange ' onChange={this.props.handleChange}>Edit</button>
+
+        <textarea type='submit' placeholder='Tell us your thoughts!'  onChange={this.props.handleChange}/>
+        <button type='onChange ' onChange={this.props.handleChange}>Submit</button>
       </form>
     </div>);
   }

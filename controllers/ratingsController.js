@@ -12,5 +12,5 @@ router.get('/ratings/:id', function(req, res) {
     console.log(ratings)
     res.json({data: ratings})
   })
-});
+})
 module.exports = router

@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     comment.comments.push(newComment)
     return comment.save()
   }).then((savedComment) => {
-    res.send(savedComment)
+    res.json(savedComment)
   })
 })
 
@@ -29,7 +29,7 @@ router.patch('/:commentId', (req, res) => {
     commentToUpdate.description = req.body.description
     return comment.save()
   }).then((savedComment) => {
-    res.send(savedComment)
+    res.json(savedComment)
   })
 })
 
@@ -38,7 +38,7 @@ router.delete('/:commentId', (req, res) => {
     comment.comments.id(req.params.id).remove()
     return comment.save()
   }).then((savedComment) => {
-    res.send(savedComment)
+    res.json(savedComment)
   })
 })
 

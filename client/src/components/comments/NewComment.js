@@ -1,16 +1,33 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import Comment from './Comment'
+import Movies from '../movies/Movies'
 
 export default class NewComment extends Component {
 
   state = {
-   redirectToComment: ""
+   redirectToComment: '',
+   comment: {
+
+   }
  };
 
+ componentWillMount() {
+   this.getMovieComments()
+ }
+
+ getMovieComments = async () => {
+
+   const res = await axios.get(`/api/movies/${this.state.comment.id}`)
+   console.log(res)
+   this.setState({comment: res.data})
+
+ }
+
+
     newComment = payload => {
-   axios.post(`/api/comment/:id`, payload).then(res => {
+   axios.post(`/api/movies/comment/:id`, payload).then(res => {
    console.log(res.data)
      const newCommentId = res.data._id
      this.setState({ redirectToComment: newCommentId })
@@ -34,7 +51,7 @@ export default class NewComment extends Component {
 
  render() {
    if (this.state.redirectToComment){
-       return <Redirect to={`/comment/${this.state.redirectToComment}`}/>
+       return <Redirect to={'api/comments/:id/comment'}/>
    }
    return (
      <div>
@@ -43,8 +60,8 @@ export default class NewComment extends Component {
 
        <input
          type="text"
-         name="movieTitle"
-         value={this.state.movieTitle}
+         name="commentTitle"
+         value={this.state.commentTitle}
          onChange={this.handleChange}
        />
        <br/>
@@ -57,6 +74,7 @@ export default class NewComment extends Component {
        />
        <button type='submit'>Create New Comment</button>
        </form>
+
      </div>
    );
  }

@@ -8,15 +8,15 @@ export default class Login extends Component {
   state = {
     users: [
       {
-        _id: '1234',
-        name: 'jim'
+        _id: '21u93i4-029',
+        name: 'court'
       }
     ],
     redirectToUser: ''
   }
 
   getAllUsers = () => {
-    axios.get('/api/users/:id').then((res) => {
+    axios.get('/api/users').then((res) => {
       console.log(res.data)
       this.setState({users: res.data})
     })
@@ -35,7 +35,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.redirectToUser !== '') {
-      return <Redirect to={`/user/${this.state.redirectToUser}`}/>
+      return <Redirect to={`/users/${this.state.redirectToUser}`}/>
     }
     return (<div>
       <h1>Welcome Back, Please select a {User.name}

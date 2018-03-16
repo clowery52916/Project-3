@@ -28,12 +28,22 @@ export default class Comment extends Component {
     deleteShowView: false,
     redirect: false
   };
-
-  componentDidMount() {
-    this.updatePage();
+  componentWillMount() {
+    this.getMovieComment()
   }
 
-  updatePage = () => {
+  getMovieComment = async () => {
+
+    const res = await axios.get(`/api/movies/comments`)
+    console.log(res)
+    this.setState({comment: res.data})
+  }
+
+  componentDidMount() {
+    this.updateComment();
+  }
+
+  updateComment = () => {
     const commentId = this.state.commentId;
     axios.get(`/api/comments/${commentId}`).then(res => {
       this.setState({comment: res.data.comment})
@@ -54,7 +64,7 @@ export default class Comment extends Component {
     });
   };
 
-  updateEditComment = event => {
+  editComment = event => {
     event.preventDefault();
     const commentId = this.props.match.params.commentId;
     const payload = {
@@ -66,7 +76,7 @@ export default class Comment extends Component {
       this.setState({comment: res.data});
     });
 
-    this.updatePage();
+    this.updateComment();
   };
 
   deleteComment = () => {
@@ -84,18 +94,18 @@ export default class Comment extends Component {
     const newComment = {
       ...this.state.comment
     };
-    newComment[event.target.name] = event.target.value
+    newComment[event.target.title] = event.target.value
     this.setState({comment: newComment});
     console.log(event.target.value);
   };
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to="/comments"/>;
+      return <Redirect to="api/movies/:Id/comments"/>;
     }
     return (<div>
 
-      <h1>{this.state.comment.title}</h1>
+      {/* <h1>{this.props.match.params.comment}</h1> */}
       {/* //this is where I am having issues, calling objects for title and description
          //need to figure this out ASAP!!!!!!
          //Also need to get the actual object to post AND delete */

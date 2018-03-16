@@ -3,32 +3,42 @@ const router = express.Router();
 
 const {User} = require('../models/UserModel')
 
-router.get('/', (req, res) => {
-  User.find().then((users) => {
-    res.send(users)
-  }).catch((err) => {
-    res.status(500)
+// router.get('/', (req, res) => {
+//   Movie.findById(req.params.userId).then((movie) => {
+//     const comments = movie.comments
+//     res.json(comments)
+//   })
+// })
+
+
+router.get('/', async (req, res) => {
+  console.log('GETTING ALL USERS')
+  try{
+    const users  = await User.find({})
+    res.json(users)
+  }catch (err) {
+    console.log('error getting all users', err)
     res.send(err)
-  })
+  }
 })
 
-router.get('/:userId', (req, res) => {
-  User.findById(req.params.userId).then((user) => {
-    res.send(user)
-  }).catch((err) => {
-    res.status(500)
-    res.send(err)
-  })
-}).catch((err) => {
-  res.status(500)
-  res.send(err)
 
-  router.post('/', (req, res) => {
-    const newUser = new User({name: req.body.name, comments: req.body.aboutMe})
-    newUser.save().then((savedUser) => {
-      res.redirect(`/api/users/${savedUser._id}`)
-    })
-  }).catch((err) => {
-    res.status(500)
+router.get('/id', async (req, res) => {
+  console.log('SHOW ROUTE HIT')
+  try {
+    const userId = req.params.id
+    console.log(userId)
+    const users = await User.findById(userId)
+    res.json(users)
+  } catch (err) {
+    console.log(err)
     res.send(err)
-  })module.exports = router
+  }
+})
+
+router.post('/', (req, res) => {
+  res.send('new movie')
+  res.render('movie/new')
+})
+
+module.exports = router

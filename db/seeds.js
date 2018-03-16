@@ -1,8 +1,8 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-const [Movies] = require('../models/movies')
-const [User] = require('../models/user')
-const [Comment] = require('../models/comment')
+const {Movies} = require('../models/MoviesModel')
+const {User} = require('../models/UserModel')
+const {Comment} = require('../models/CommentModel')
 
 mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
@@ -16,22 +16,12 @@ mongoose.connection.on('error', (error) => {
   process.exit(-1)
 })
 
-//movie seeds
-const bestPicture = new Movie({
-title: 'The Shape of Water',
-description: 'lorem-ipsum',
-moviePoster: 'https://imgur.com/pMRc7hS',
-comments:[greatMovie, alrightMovie]})
-const runnerUp = new Movie({
-  title: 'Three Billboards',
-  description: 'lorem-ipsum',
-  moviePoster: 'https://imgur.com/PSaqHQB'
-  comments:[greatMovie, bestMovie, alightMovie]})
+
 //comments seeds
   const bestMovie = new Comment({
-    title: `${Movie.title}`,
+    title: 'Best Movie ever!',
     description: 'This movie was amazing'})
-  const alightMovie = new Comment({
+  const alrightMovie = new Comment({
     title: 'So so',
     description: 'Wasn\'t super impressed'})
   const greatMovie = new Comment({
@@ -40,14 +30,24 @@ const runnerUp = new Movie({
 //user seeds
   const court = new User ({
     name: 'Courtney_Lowery',
-    comments: [bestPicture, runnerUp, bestMovie, greatMovie]})
+    comments: [bestMovie, greatMovie, alrightMovie]
+  })
+  //movie seeds
+  const bestPicture = new Movies({
+  title: 'The Shape of Water',
+  description: 'lorem-ipsum',
+  moviePoster: 'https://imgur.com/pMRc7hS',
+  comments:[greatMovie, alrightMovie]})
+
+const runnerUp = new Movies({
+    title: 'Three Billboards',
+    description: 'lorem-ipsum',
+    moviePoster: 'https://imgur.com/PSaqHQB',
+    comments:[greatMovie, bestMovie, alrightMovie]
+  })
 //removing comments
-  Comment.remove({})
-  .then(() => { greatMovie.save() })
-  .then(() => { alightMovie.save() })
-  .then(() => { bestMovie.save() })
-
-
-
-  .then(() =< { console.log('user saved') })
+  Movies.remove({})
+  .then(() => bestPicture.save() )
+  .then(() => runnerUp.save() )
+  .then(() => { console.log('movies saved') })
   .then(() => { mongoose.connection.close()})

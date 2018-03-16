@@ -6,7 +6,7 @@ import NewComment from '../comments/NewComment'
 import CommentView from '../comments/CommentView'
 import styled from 'styled-components'
 import Comment from '../comments/Comment'
-import EditComment from '../comments/EditComment'
+import MovieComment from './MovieComment'
 
 export default class Movie extends Component {
   state = {
@@ -41,7 +41,7 @@ export default class Movie extends Component {
     this.setState({movie: newMovie})
   }
 
-  updateMovie = async(movie) => {
+  updateMovieComment = async(movie) => {
     const res = await axios.patch(`/api/movie/${movie.id}`)
     this.setState({movie: res.data.movie})
   }
@@ -82,10 +82,14 @@ export default class Movie extends Component {
 
       {
         this.state.edit
-          ? (<EditComment handleSubmit={this.handleSubmit} movie={this.state.movie} handleChange={this.handleChange} updateComment={this.updateComment}/>)
+          ? (<MovieComment handleSubmit={this.handleSubmit} movie={this.state.movie} handleChange={this.handleMovieChange} updateComment={this.updateMovieComment}/>)
           : null
       }
       <br/>
+
+      <MovieComment />
+
+
     </div>)
   }
 }
