@@ -24,9 +24,10 @@ export default class App extends Component {
           <Route exact="exact" path="/" component={Login}/>
           <Route exact="exact" path='/movies' component={Movies}/>
           <Route exact="exact" path='/movies/:movieId' component={Movie}/>
+          <Route exact='exact' path='/movies/:movieId/users' component={User}/>
           <Route exact='exact' path='/movie' component={MovieComment}/>
           <Route exact="exact" path='/comments' component={Comment}/>
-          <Route exact="exact" path='/comments/:commentId' component={NewComment}/>
+          <Route exact="exact" path='/comment' component={NewComment}/>
           <Route exact="exact" path='ratings' component={Ratings}/>
 
           <Movie/>

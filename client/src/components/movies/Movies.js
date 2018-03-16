@@ -7,8 +7,7 @@ import Movie from './Movie'
 export default class Movies extends Component {
 
   state = {
-    movies: [],
-
+    movies: []
   }
 
   componentWillMount() {
@@ -21,22 +20,17 @@ export default class Movies extends Component {
 
   }
 
-
   render() {
-    return (
-
-      <div>
+    return (<div>
       <h1>Best Picture!</h1>
-        {this.state.movies.map(movie =>
-          <Link key={movie._id} to={`/movies/${movie._id}`} cons={this.state.movie}>
-              <h3>{movie.title}</h3>
-                <img src={movie.moviePoster} alt={movie.title}/>
-          </Link>)
-
+      {
+        this.state.movies.map(movie => <Link key={movie._id} to={`/movies/${movie._id}`} cons={this.state.movie}>
+          <h3>{movie.title}</h3>
+          <img src={movie.moviePoster} alt={movie.title}/>
+        </Link>)
 
       }
-    </div>
-  )
+    </div>)
   }
 
 }

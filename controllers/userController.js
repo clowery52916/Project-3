@@ -3,16 +3,9 @@ const router = express.Router();
 
 const User = require('../models/UserModel')
 
-router.get('/', (req, res) => {
-  User.find().then((users) => {
-    res.send(users)
-  })
-})
 
 router.post('/', (req, res) => {
-  const newUser = new User({
-    name: req.body.name
-  })
+  const newUser = new User({name: req.body.name})
 
   newUser.save().then(() => {
     res.redirect('/api/user')

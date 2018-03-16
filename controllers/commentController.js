@@ -3,14 +3,6 @@ const router = express.Router({mergeParams: true})
 
 const Comment = require('../models/CommentModel')
 
-
-//showing all comments in my database
-router.get('/', (req, res) => {
-  Comment.find().then((comments) => {
-    res.send(comments)
-  })
-})
-
 router.post('/', (req, res) => {
   console.log(req.params.commentId)
   Comment.findById(req.params.commentId).then((comment) => {

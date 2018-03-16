@@ -14,7 +14,6 @@ router.post('/', (req, res) => {
   })
 })
 
-
 router.delete('/:id', (req, res) => {
   Movie.findById(req.params.movieId).then((user) => {
     user.movies.id(req.params.id).remove()
