@@ -9,7 +9,6 @@ const {User} = require('../models/UserModel')
 //     res.json(comments)
 //   })
 // })
-
 router.get('/', async (req, res) => {
   console.log('GETTING ALL USERS')
   try {
@@ -21,8 +20,8 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/id', async (req, res) => {
-  console.log('SHOW ROUTE HIT')
+router.get('/:id', async (req, res) => {
+  console.log('SHOW ROUTE HIT FOR USERS')
   try {
     const userId = req.params.id
     console.log(userId)
@@ -39,4 +38,5 @@ router.post('/', (req, res) => {
   res.render('movie/new')
 })
 
+module.exports = router
 module.exports = router

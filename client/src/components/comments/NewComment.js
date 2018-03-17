@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import {Redirect, Link} from 'react-router-dom'
 import Comment from './Comment'
-import Movies from '../movies/Movies'
+import AllMovies from '../movies/AllMovies'
 
 export default class NewComment extends Component {
 

@@ -1,26 +1,48 @@
 import React, {Component} from 'react';
-import Movie from '../movies//Movie'
+import SingleMovie from '../movies//SingleMovie'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import styled from 'styled-components'
+import axios from 'axios'
 
 export default class User extends Component {
+
+
   state = {
-    name: ''
+    name: {},
+    comment: []
   }
 
-  handleChange = (event) => {
-    const newState = {
-      ...this.state
+    componentWillMount() {
+      this.getUser()
     }
-    newState[event.target.name] = event.target.value
-    this.setState(newState)
-  }
+    getUser = async () => {
+      const userId = this.props.match.params.Id
+      const res = await axios.get(`/api/user/${userId}`)
+      console.log(res.data)
+      this.setState({user: res.data})
 
-  saveNewUser = (event) => {
-    event.preventDefault()
-    this.state.createNewUser
-    this.setState({name: ''})
-  }
+    }
+    // createNewUser = async (newUser) => {
+    //   const userId = this.props.match.params.Id
+    //   const res = await axios.post(`/api/user/${userId}/comment/`, {comment: newUser})
+    //   this.setState({user: res.data.user})
+    //   this.getMovie()
+    // }
+
+
+  // handleChange = (event) => {
+  //   const newState = {
+  //     ...this.state
+  //   }
+  //   newState[event.target.name] = event.target.value
+  //   this.setState(newState)
+  // }
+  //
+  // saveNewUser = (event) => {
+  //   event.preventDefault()
+  //   this.state.createNewUser
+  //   this.setState({name: ''})
+  // }
 
   render() {
     return (<div>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-const {Movies} = require('../models/MoviesModel')
+const {SingleMovie} = require('../models/SingleMovieModel')
+const {AllMovies} = require('../models/AllMoviesModel')
 
 // router.get('/', (req, res) => {
 //   Movie.findById(req.params.movieId).then((movie) => {
@@ -13,7 +13,7 @@ const {Movies} = require('../models/MoviesModel')
 router.get('/', async (req, res) => {
   console.log('GETTING ALL MOVIES')
   try {
-    const movies = await Movies.find({})
+    const movies = await AllMovies.find({})
     res.json(movies)
   } catch (err) {
     console.log('error getting all movies', err)
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
   try {
     const movieId = req.params.id
     console.log(movieId)
-    const movies = await Movies.findById(movieId)
+    const movies = await AllMovies.findById(movieId)
     res.json(movies)
   } catch (err) {
     console.log(err)

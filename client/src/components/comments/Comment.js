@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import Movies from '../movies/Movies'
+import AllMovies from '../movies/AllMovies'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import styled from 'styled-components'
 import EditComment from './EditComment'
@@ -105,7 +105,7 @@ export default class Comment extends Component {
     }
     return (<div>
       <p>
-        Post on All Movies
+        Post on Here
       </p>
       <form onSubmit={this.handleSubmit}>
         <CommentContainer>

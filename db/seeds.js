@@ -1,6 +1,6 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-const {Movies} = require('../models/MoviesModel')
+const {AllMovies} = require('../models/AllMoviesModel')
 const {User} = require('../models/UserModel')
 const {Comment} = require('../models/CommentModel')
 
@@ -16,31 +16,41 @@ mongoose.connection.on('error', (error) => {
   process.exit(-1)
 })
 
+
 //comments seeds
-const bestMovie = new Comment({title: 'Best Movie ever!', description: 'This movie was amazing'})
-const alrightMovie = new Comment({title: 'So so', description: 'Wasn\'t super impressed'})
-const greatMovie = new Comment({title: 'awesome!', description: 'Classic for sure!!'})
+const bestMovie = new Comment({
+  title: 'Best Movie ever!',
+ description: 'This movie was amazing'})
+const alrightMovie = new Comment({title: 'So so',
+description: 'Wasn\'t super impressed'})
+const greatMovie = new Comment({title: 'awesome!',
+description: 'Classic for sure!!'})
 //user seeds
 const court = new User({
   name: 'Courtney_Lowery',
-  comments: [bestMovie, greatMovie, alrightMovie]
+  comment: [bestMovie, greatMovie, alrightMovie]
 })
 //movie seeds
-const bestPicture = new Movies({
+const bestPicture = new AllMovies({
   title: 'The Shape of Water',
-  description: 'lorem-ipsum',
+  description: 'At a top secret research facility in  the 1960s, a lonely janitor forms a unique relationship with an amphibious creature that is being held in captivity.',
+  Director: 'Guillermo del Toro',
+  Writers: 'Guillermo del Toro, (screenplay by), Vanessa Taylor',
+  Stars: 'Sally Hawkins, Octavia Spencer, Michael Shannon ',
   moviePoster: 'https://i.imgur.com/pMRc7hS.jpg',
-  comments: [greatMovie, alrightMovie]
+  comment: [greatMovie, alrightMovie]
 })
 
-const runnerUp = new Movies({
+const runnerUp = new AllMovies({
   title: 'Three Billboards',
   description: 'lorem-ipsum',
-  moviePoster: 'https://imgur.com/PSaqHQB',
-  comments: [greatMovie, bestMovie, alrightMovie]
+  moviePoster: 'https://i.imgur.com/PSaqHQB.jpg',
+  comment: [greatMovie, bestMovie, alrightMovie]
 })
 //removing comments
-Movies.remove({}).then(() => bestPicture.save()).then(() => runnerUp.save()).then(() => {
+AllMovies.remove({}).then(() =>
+  bestPicture.save()).then(() =>
+  runnerUp.save()).then(() => {
   console.log('movies saved')
 }).then(() => {
   mongoose.connection.close()

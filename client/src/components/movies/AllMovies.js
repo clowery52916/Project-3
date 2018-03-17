@@ -12,19 +12,22 @@ export default class Movies extends Component {
     redirect: false
   };
   componentWillMount() {
-    this.getMovie()
+    this.getAllMovies()
   }
 
-  getMovie = async () => {
-
+  getAllMovies = async () => {
     const res = await axios.get(`/api/movies`)
     console.log(res)
     this.setState({movies: res.data})
   }
 
+  createNewMoviePage = async() => {
+    const res = await axios.post('/api/movies/:movie_id')
+      this.setState({movie: res.data.movie})
+   }
   render() {
     return (<div>
-      <h1>Best Picture!</h1>
+      <h1>And the nomanies are.....</h1>
       {
         this.state.movies.map(movie => <Link key={movie._id} to={`/movies/${movie._id}`} cons={this.setState.movie}>
           <br/>
