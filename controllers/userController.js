@@ -1,42 +1,66 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 const {User} = require('../models/UserModel')
+const {SingleMovie} = require('../models/SingleMovieModel')
 
-// router.get('/', (req, res) => {
-//   Movie.findById(req.params.userId).then((movie) => {
-//     const comments = movie.comments
-//     res.json(comments)
-//   })
-// })
-router.get('/', async (req, res) => {
-  console.log('GETTING ALL USERS')
-  try {
-    const users = await User.find({})
-    res.json(users)
-  } catch (err) {
-    console.log('error getting all users', err)
-    res.send(err)
-  }
-})
+router.get("/", (req, res) => {
+  SingleMovie.findById(req.params.movieId).then(movies => {
+    const users = movies.users;
+    res.json(users);
+  });
+});
 
-router.get('/:id', async (req, res) => {
-  console.log('SHOW ROUTE HIT FOR USERS')
-  try {
-    const userId = req.params.id
-    console.log(userId)
-    const users = await User.findById(userId)
-    res.json(users)
-  } catch (err) {
-    console.log(err)
-    res.send(err)
-  }
-})
+router.get("/:id", (req, res) => {
+  SingleMovie.findById(req.params.movieId)
+    .then(movies => {
+      const user = movies.users.id(req.params.id);
 
-router.post('/', (req, res) => {
-  res.send('new movie')
-  res.render('movie/new')
-})
+      res.json(user);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
-module.exports = router
+router.post("/", (req, res) => {
+
+  SingleMovie.findById(req.params.movieId)
+    .then(movies => {
+      const newUser = new User({
+        name: req.body.name,
+      });
+      movies.users.push(newUser);
+      return movies.save();
+    })
+    .then(savedCon => {
+      res.send(savedCon);
+    });
+});
+
+
+router.patch("/:id", (req, res) => {
+  SingleMovie.findById(req.params.movieId)
+    .then(movies => {
+      const user = movies.users.id(req.params.id);
+
+      (user.name = req.body.name)
+
+      return movies.save();
+    })
+    .then(updatedMovie => {
+      res.json(updatedMovie);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  SingleMovie.findById(req.params.movieId)
+    .then(movies => {
+      movies.users.id(req.params.id).remove();
+      return movies.save();
+    })
+    .then(savedMovie => {
+      res.send(savedMovie);
+    });
+});
 module.exports = router

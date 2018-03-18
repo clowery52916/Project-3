@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log(req.params.movieId)
   SingleMovie.findById(req.params.movieId).then((movie) => {
-    console.log(movie.comments)
+    console.log(movieId.comments)
     const newComment = new Comment(req.body)
     console.log(newComment)
     comment.movie.push(newComment)

@@ -1,14 +1,8 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const {SingleMovie} = require('../models/SingleMovieModel')
 const {AllMovies} = require('../models/AllMoviesModel')
-
-// router.get('/', (req, res) => {
-//   Movie.findById(req.params.movieId).then((movie) => {
-//     const comments = movie.comments
-//     res.json(comments)
-//   })
-// })
+const {Comment} = require ('../models/CommentModel')
 
 router.get('/', async (req, res) => {
   console.log('GETTING ALL MOVIES')
@@ -34,9 +28,17 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.post('/', (req, res) => {
-  res.send('new movie')
-  res.render('movie/new')
+router.post('/', async (req, res) => {
+  console.log('MovieComment route showing')
+  try {
+    const commentId = req.params.id
+    console.log(commentId)
+    const comments = await NewComment.findById(commentId)
+    res.json(comments)
+  } catch(err) {
+    console.log('this route to NewComment is not working', err)
+    res.send(err)
+  } res.redirect('/movies/:id/comments')
 })
 
 module.exports = router

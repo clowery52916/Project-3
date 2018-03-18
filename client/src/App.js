@@ -24,20 +24,23 @@ export default class App extends Component {
         <Switch>
 
           <Route exact="exact" path="/" component={Login}/>
+            <Route exact="exact" path='/movies' component={AllMovies}/>
+            <Route exact="exact" path='/movies/:Id/' component={SingleMovie}/>
+            <Route exact='exact' path='movies/:movieId/comments' component={MovieComment}/>
 
           <Route exact='exact' path='/user/:Id' component={User}/>
           {/* this route will take you to a specific user */}
           <Route exact="exact" path='/comments' component={Comment}/>
-          <Route exact='exact' path='/api/movies/:Id/comments' component={CommentView}/>
+          <Route exact='exact' path='/movies/:Id/comment' component={CommentView}/>
 
            {/* <Route exact='exact' path='/comments/:id/delete' component={DeleteComments}/> */}
-          <Route exact='exact' path='/comments/:id/edit' componenet={EditComment}/>
-          <Route exact='exact' path='/comments/:id' component={NewComment}/>
-          <Route exact='exact' path='/comments/new' component={Show}/>
-          <Route exact="exact" path='/movies' component={AllMovies}/>
-          <Route exact="exact" path='/movies/:Id/' component={SingleMovie}/>
+          <Route exact='exact' path='/movies/:Id/comments/edit' componenet={EditComment}/>
+
+          <Route exact='exact' path='/movies/:Id/comments/show' component={Show}/>
+
+
           {/* //this is the actual id of the movie & what we need to call on when we are trying to access specific movie */}
-          <Route exact='exact' path='/movies/:Id/comments' component={MovieComment}/>
+          <Route exact='exact' path='/movies/:Id/comments' component={NewComment}/>
 
           <Route exact="exact" path='ratings' component={Ratings}/>
           <SingleMovie />
