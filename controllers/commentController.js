@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router({mergeParams: true})
-const {SingleMovie} = require('../models/SingleMovieModel')
+const {Movies} = require('../models/MoviesModel')
 
 const {Comment} = require('../models/CommentModel')
 
 router.get('/', (req, res) => {
-  const movie = SingleMovie.findById(req.params.movieId)
+  const movie = Movies.findById(req.params.movieId)
   Comment.find().then((comments) => {
     res.json(comments)
   })
@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   console.log(req.params.movieId)
-  SingleMovie.findById(req.params.movieId).then((movie) => {
+  Movies.findById(req.params.movieId).then((movie) => {
     console.log(movieId.comments)
     const newComment = new Comment(req.body)
     console.log(newComment)
     comment.movie.push(newComment)
     return movie.save()
-  }).then((updatedSingleMovie) => {
-    res.json(updatedSingleMovie)
+  }).then((updatedMovies) => {
+    res.json(updatedMovies)
   })
 })
 

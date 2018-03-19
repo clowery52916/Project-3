@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const {SingleMovie} = require('../models/SingleMovieModel')
-const {AllMovies} = require('../models/AllMoviesModel')
+const {Movies} = require('../models/MoviesModel')
 const {Comment} = require ('../models/CommentModel')
 
 router.get('/', async (req, res) => {
   console.log('GETTING ALL MOVIES')
   try {
-    const movies = await AllMovies.find({})
+    const movies = await Movies.find({})
     res.json(movies)
   } catch (err) {
     console.log('error getting all movies', err)
@@ -20,7 +19,7 @@ router.get('/:id', async (req, res) => {
   try {
     const movieId = req.params.id
     console.log(movieId)
-    const movies = await AllMovies.findById(movieId)
+    const movies = await Movies.findById(movieId)
     res.json(movies)
   } catch (err) {
     console.log(err)
@@ -33,10 +32,10 @@ router.post('/', async (req, res) => {
   try {
     const commentId = req.params.id
     console.log(commentId)
-    const comments = await NewComment.findById(commentId)
+    const comments = await Comment.findById(commentId)
     res.json(comments)
   } catch(err) {
-    console.log('this route to NewComment is not working', err)
+    console.log('this route to Comment is not working', err)
     res.send(err)
   } res.redirect('/movies/:id/comments')
 })
