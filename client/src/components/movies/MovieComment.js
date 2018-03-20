@@ -2,44 +2,51 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import Comment from '../comments/Comment'
 import styled from 'styled-components'
+import axios from 'axios'
 
-const postContainer = styled.div `
-  display: flex;
-  width: 95vw;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-content: space-around;
-`
 
 export default class MovieComment extends Component {
 
   state = {
-    newComment: {
-      title: '',
-      description: ''
+  comments: [],
+  comment: {
+    title: 'awesome',
+    description: 'great movie!'
+  }
     }
+
+
+  componentWillMount() {
+    this.getComment()
+  //  console.log(this.props.id)
   }
+getComment = async ()=> {
+  const commentId = this.props.commentId
+  const res =  await axios.get(`/api/movies/${this.props.id}/comments`)
+  console.log(res)
+  this.setState({comments: res.data
+  })
+}
+  handleChange(event, id) {
+    console.log(id)
+    const newComment = {...this.state.comment}
+    console.log(newComment)
+  //  const commentChange = newComment.find(comment => comment._id === id)
+  //  commentChange [event.target.name] = event.target.value
 
-  handleMovieCommentChange = (event) => {
-    //console.log(id)
-    const attribute = event.target.name
-    //console.log(attribute)
-    const comment = {
-      ...this.state.newComment
-    }
-    console.log(comment)
-    //console.log(comment)
-    //const movieChange = newMovie.find(movie => movie._id === id)
-    comment[attribute] = event.target.value
-
-    this.setState({newComment: comment})
+    this.setState({comment: newComment})
+}
+  handleSubmit = async (comment) => {
+    const commentId = this.state.commentId
+    const res = await axios.post(`/api/movies/${commentId}`)
+    this.setState({comment: res.data.comment})
   }
-
-  handleSubmit = async (event) => {
-    //event.preventDefault()
-    this.props.createNewComment(this.state.newComment)
-  }
-
+deleteComment = async() => {
+   const commentId = this.props.match.params.newCommentId
+  const res = await axios.delete (`/api/movies/${commentId}/comment/${commentId}`)
+  this.setState({comment: res.data.comment})
+  this.getComment()
+}
   render() {
 
     return (<div>
@@ -48,11 +55,11 @@ export default class MovieComment extends Component {
 
       <form onSubmit={this.handleSubmit()}>
 
-        <textarea type="submit" placeholder="Movie Title" name='title' value={this.state.newComment.title} onChange={this.handleMovieCommentChange}/>
+        <textarea type='submit' value={this.state.comment.title} onChange={this.handleChange}/>
         <br/>
         <br/>
 
-        <textarea type='submit' placeholder='Tell us your thoughts!' name='description' value={this.state.newComment.description} onChange={this.handleMovieCommentChange}/>
+        <textarea type='submit' placeholder='Tell us your thoughts!' name='description' value={this.state.comment.description} onChange={this.handleChange}/>
         <button type='onChange'>Create</button>
       </form>
     </div>)

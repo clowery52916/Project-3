@@ -31,13 +31,13 @@ export default class App extends Component {
           <Route exact='exact' path='/api/movies/:Id/comments' component={CommentView}/>
 
            {/* <Route exact='exact' path='/comments/:id/delete' component={DeleteComments}/> */}
-          <Route exact='exact' path='/comments/:id/edit' componenet={EditComment}/>
-          <Route exact='exact' path='/comments/:id' component={NewComment}/>
-          <Route exact='exact' path='/comments/new' component={Show}/>
+          <Route exact='exact' path='/comments/:id/' componenet={EditComment}/>
+          <Route exact='exact' path='/comments/:Id/' component={NewComment}/>
+          <Route exact='exact' path='/comments/' component={Show}/>
           <Route exact="exact" path='/movies' component={AllMovies}/>
           <Route exact="exact" path='/movies/:Id/' component={SingleMovie}/>
           {/* //this is the actual id of the movie & what we need to call on when we are trying to access specific movie */}
-          <Route exact='exact' path='/movies/:Id/comments' component={MovieComment}/>
+          <Route exact='exact' path='/movies/:Id/' component={MovieComment}/>
 
           <Route exact="exact" path='ratings' component={Ratings}/>
           <SingleMovie />

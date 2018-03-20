@@ -1,19 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const {SingleMovie} = require('../models/SingleMovieModel')
-const {AllMovies} = require('../models/AllMoviesModel')
-
-// router.get('/', (req, res) => {
-//   Movie.findById(req.params.movieId).then((movie) => {
-//     const comments = movie.comments
-//     res.json(comments)
-//   })
-// })
+const router = express.Router({mergeParams: true});
+const {Movies} = require('../models/MoviesModel')
+const {Comment} = require ('../models/CommentModel')
 
 router.get('/', async (req, res) => {
   console.log('GETTING ALL MOVIES')
   try {
-    const movies = await AllMovies.find({})
+    const movies = await Movies.find({})
     res.json(movies)
   } catch (err) {
     console.log('error getting all movies', err)
@@ -26,7 +19,7 @@ router.get('/:id', async (req, res) => {
   try {
     const movieId = req.params.id
     console.log(movieId)
-    const movies = await AllMovies.findById(movieId)
+    const movies = await Movies.findById(movieId)
     res.json(movies)
   } catch (err) {
     console.log(err)
@@ -34,9 +27,36 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.post('/', (req, res) => {
-  res.send('new movie')
-  res.render('movie/new')
+router.post('/', async (req, res) => {
+  console.log('MovieComment route showing')
+  try {
+    const commentId = req.params.id
+    console.log(commentId)
+    const comments = await Comment.findById(commentId)
+    res.json(comments)
+  } catch(err) {
+    console.log('this route to Comment is not working', err)
+    res.send(err)
+  } res.redirect('/movies/:id/comments')
+})
+router.patch('/:commentId', (req, res) => {
+  Comment.findById(req.params.commentId).then((comment) => {
+    const commentToUpdate = comment.comments.id(req.params.id)
+    commentToUpdate.title = req.body.title
+    commentToUpdate.description = req.body.description
+    return comment.save()
+  }).then((savedComment) => {
+    res.json(savedComment)
+  })
+})
+
+router.delete('/:commentId', (req, res) => {
+  Comment.findByIdAndRemove(req.params.commentId).then((comment) => {
+    comment.comments.id(req.params.id).remove()
+    return comment.save()
+  }).then((savedComment) => {
+    res.json(savedComment)
+  })
 })
 
 module.exports = router
@@ -53,32 +73,5 @@ module.exports = router
 //   })
 // })
 //
-//  router.post('/', (req, res) => {
-//    Movie.findById(req.params.movieId).then((movie) => {
-//      const newComment = new Comment({title: req.body.title description: req.body.description})
-//      movie.comments.push(newComment)
-//      return movie.save()
-//    }).then((savedMovie) => {
-//      res.json(savedMovie)
-//    }).catch((err) => {
-//      console.log(err)
-//    })
-//  })
-//
-// router.get('/:movieId', (req, res) => {
-//   Movie.findById(req.params.movieId).then((movie) => {
-//     const comments = movie.comments
-//     res.json(comments)
-//   })
-// })
-//
-// router.delete('/:movieId', (req, res) => {
-//   Movie.findById(req.params.movieId).then((movies) => {
-//     movies.movies.id(req.params.id).remove()
-//     return movies.save()
-//   }).then((savedMovie) => {
-//     res.json(savedMovie)
-//   })
-// })
-//
+
 // module.exports = router

@@ -57,8 +57,8 @@ export default class SingleMovie extends Component {
    this.setState({movie: newMovie})
  }
 
-  updateMovie = async (movie) => {
-  const res = await axios.patch(`/api/movies/${movie.id}`)
+  submitMovieComment = async (movie) => {
+  const res = await axios.post(`/api/movies/${movie.id}`)
   this.setState({movie: res.data.movie})
 }
 deleteMovie = async() => {
@@ -75,7 +75,7 @@ render() {
      }
      return (<div>
        {/* <NewComment/> */}
-       <h1>{[this.state.movie.title]}</h1>
+       <h1><MovieComment id = {this.props.match.params.Id}/></h1>
        <p>
          <strong>Movie Description:
          </strong>
