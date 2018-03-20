@@ -1,8 +1,8 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-const {AllMovies} = require('../models/AllMoviesModel')
-const {User} = require('../models/UserModel')
-const {Comment} = require('../models/CommentModel')
+const {Movies} = require('./models/MoviesModel')
+const {User} = require('./models/UserModel')
+const {Comment} = require('./models/CommentModel')
 
 mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
@@ -48,7 +48,7 @@ const runnerUp = new AllMovies({
   comment: [greatMovie, bestMovie, alrightMovie]
 })
 //removing comments
-AllMovies.remove({}).then(() =>
+Movies.remove({}).then(() =>
   bestPicture.save()).then(() =>
   runnerUp.save()).then(() => {
   console.log('movies saved')
