@@ -58,10 +58,12 @@ deleteComment = async() => {
         <textarea type='submit' value={this.state.comment.title} onChange={this.handleChange}/>
         <br/>
         <br/>
-
         <textarea type='submit' placeholder='Tell us your thoughts!' name='description' value={this.state.comment.description} onChange={this.handleChange}/>
+        </form>
         <button type='onChange'>Create</button>
-      </form>
-    </div>)
-  }
+
+
+    </div>
+)
+}
 }

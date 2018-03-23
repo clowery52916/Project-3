@@ -1,8 +1,8 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-const {Movies} = require('./models/MoviesModel')
-const {User} = require('./models/UserModel')
-const {Comment} = require('./models/CommentModel')
+const {Movies} = require('../models/MoviesModel')
+const {User} = require('../models/UserModel')
+const {Comment} = require('../models/CommentModel')
 
 mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
@@ -31,7 +31,7 @@ const court = new User({
   comment: [bestMovie, greatMovie, alrightMovie]
 })
 //movie seeds
-const bestPicture = new AllMovies({
+const bestPicture = new Movies({
   title: 'The Shape of Water',
   description: 'At a top secret research facility in  the 1960s, a lonely janitor forms a unique relationship with an amphibious creature that is being held in captivity.',
   Director: 'Guillermo del Toro',
@@ -41,7 +41,7 @@ const bestPicture = new AllMovies({
   comment: [greatMovie, alrightMovie]
 })
 
-const runnerUp = new AllMovies({
+const runnerUp = new Movies({
   title: 'Three Billboards',
   description: 'lorem-ipsum',
   moviePoster: 'https://i.imgur.com/PSaqHQB.jpg',
