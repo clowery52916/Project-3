@@ -38,14 +38,14 @@ const bestPicture = new Movies({
   Writers: 'Guillermo del Toro, (screenplay by), Vanessa Taylor',
   Stars: 'Sally Hawkins, Octavia Spencer, Michael Shannon ',
   moviePoster: 'https://i.imgur.com/pMRc7hS.jpg',
-  comment: [greatMovie, alrightMovie]
+  comment: {greatMovie, alrightMovie}
 })
 
 const runnerUp = new Movies({
   title: 'Three Billboards',
   description: 'lorem-ipsum',
   moviePoster: 'https://i.imgur.com/PSaqHQB.jpg',
-  comment: [greatMovie, bestMovie, alrightMovie]
+  comment: {greatMovie, bestMovie, alrightMovie}
 })
 //removing comments
 Movies.remove({}).then(() =>
