@@ -52,7 +52,7 @@ export default class NewComment extends Component {
       return <Redirect to={'api/comments/:id/comment'}/>
     }
     return (<div>
-      <h1>Post a new Comment!</h1>
+      <h1>FUUUCCCKKKK!</h1>
       <form onSubmit={this.handleSubmit}>
 
         <input type="text" name="commentTitle" value={this.state.commentTitle} onChange={this.handleChange}/>
