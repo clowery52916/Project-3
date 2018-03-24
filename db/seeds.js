@@ -43,7 +43,7 @@ const bestPicture = new Movies({
 
 const runnerUp = new Movies({
   title: 'Three Billboards',
-  description: 'lorem-ipsum',
+  description: 'this movie is about a mom who\'s daughter was raped and murdered. She is fighting the police to solve the crime.,
   moviePoster: 'https://i.imgur.com/PSaqHQB.jpg',
   comment: {greatMovie, bestMovie, alrightMovie}
 })
