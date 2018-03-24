@@ -35,39 +35,41 @@ router.post('/', (req, res) => {
 })
 
 
-router.get('/:id', async (req, res) => {
-  console.log('SHOW ROUTE HIT')
-  try {
+router.get('/:id',  (req, res) => {
+  console.log('SHOW COMMENT ROUTE HIT')
     const commentId = req.params.id
-    console.log(commentId)
-    const comments = await Comment.findById(commentId)
-    res.json(comments)
-  } catch (err) {
-    console.log(err)
-    res.send(err)
-  }
+    const movieId = req.params.movieId
+    Movies.findById(movieId).then((movie) => {
+      const comment = movie.comment.id(commentId)
+      res.json(comment)
+
+    }).catch ((err) => {
+      console.log(err)
+      res.send(err)
+    })
 })
 
-router.patch('/:id',(req, res) => {
-  const commentId = req.params.id
-  const updatedComment = req.body
-  const savedComment = Comment.findByIdAndUpdate(commentId, updatedComment)
-  .then((updatedComment) => {
-    res.json(savedComment)
-    // res.redirect(`/api/comments`)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
-})
+// router.patch('/:id',(req, res) => {
+//   const commentId = req.params.id
+//   const updatedComment = req.body
+//   const savedComment = Comment.findByIdAndUpdate(commentId, updatedComment)
+//   .then((updatedComment) => {
+//     res.json(savedComment)
+//     // res.redirect(`/api/comments`)
+//   })
+//   .catch((err) => {
+//     console.log(err)
+//   })
+// })
 
 router.delete('/:commentId', (req, res) => {
-  Comment.findByIdAndRemove(req.params.commentId).then((movie) => {
-    movie.comments.id(req.params.id).remove()
+  const movieId = req.params.movieId
+  const commentId = req.params.commentId
+  Movies.findById(movieId)
+  .then((movie) => {
+    const comment = movie.comment.id(commentId).remove()
     return movie.save()
-  }).then((savedComment) => {
-    res.json(savedComment)
   })
-})
+  })
 
 module.exports = router
