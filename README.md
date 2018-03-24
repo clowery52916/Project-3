@@ -38,4 +38,4 @@ I need to get better about using my user stories with trello. I am much better a
 
 Goals:
 
-I would really like to get my full CRUD working as soon as possible, I am currently still debugging the POST call, which is the key for the UPDATE and DELETE. I would also love to get in a 3rd party API to generate the movies for me(IMDB). I would also like to add my ratings and a like/dislike button. I really would love to get more comfortable with React overall. I would love to get more styling in on this app as well.
+I would really like to get my full CRUD showing on the front end as soon as possible. I would also love to get in a 3rd party API to generate the movies for me(IMDB). I would also like to add my ratings and a like/dislike button. I really would love to get more comfortable with React overall. I would love to get more styling in on this app as well.
