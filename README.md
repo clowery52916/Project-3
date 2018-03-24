@@ -5,7 +5,7 @@ you love! You and your friends can discuss why or why you should not see a parti
 
 Application using MERN stack - MongoDB, Express, React.js and Node.js
 
-App deployed on heroku: <https://thawing-woodland-29949.herokuapp.com>
+App deployed on heroku: https://murmuring-chamber-22625.herokuapp.com/
 
 Link to Trello: <https://trello.com/b/uEG96NqO/wdi-project-3>
 
