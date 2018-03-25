@@ -23,7 +23,7 @@ export default class Navbar extends Component {
           <Link to="/movies">All Movies</Link>
         </li>
         <li>
-          <Link to="/user/testUserId">My Movies</Link>
+          <Link to="/">Home</Link>
         </li>
       </ul>
     </NavBarContainer>)

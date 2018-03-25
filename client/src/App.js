@@ -23,26 +23,14 @@ export default class App extends Component {
         <NavBar/>
         <Switch>
 
-          <Route exact="exact" path="/" component={Login}/>
-
-          <Route exact='exact' path='/user/:Id' component={User}/>
-          {/* this route will take you to a specific user */}
-          <Route exact="exact" path='/comments' component={Comment}/>
-          {/* <Route exact='exact' path='/api/movies/:Id/comments' component={CommentView}/> */}
-
-           {/* <Route exact='exact' path='/comments/:id/delete' component={DeleteComments}/> */}
-          <Route exact='exact' path='/comments/:id/' componenet={EditComment}/>
-          <Route exact='exact' path='/comments/:Id/' component={NewComment}/>
-          <Route exact='exact' path='/comments/' component={Show}/>
-          <Route exact="exact" path='/movies' component={AllMovies}/>
-          <Route exact="exact" path='/movies/:Id/' component={SingleMovie}/>
-          {/* //this is the actual id of the movie & what we need to call on when we are trying to access specific movie */}
-          {/* <Route exact='exact' path='/movies/:Id/' component={MovieComment}/> */}
-
-          <Route exact="exact" path='ratings' component={Ratings}/>
-          <SingleMovie />
+          <Route  path="/" component={User}/>
+          <Route  path='/movies' component={AllMovies}/>
+          <Route  path='/movies/:Id/' component={SingleMovie}/>
+          {/* <Route  path='/comments' component={Comment}/>
+          <Route exact="exact" path='ratings' component={Ratings}/> */}
           <AllMovies/>
-          <Comment/>
+          <SingleMovie />
+          <User/>
         </Switch>
       </div>
     </Router>)

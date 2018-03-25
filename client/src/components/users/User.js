@@ -17,32 +17,32 @@ export default class User extends Component {
     }
     getUser = async () => {
       const userId = this.props.match.params.Id
-      const res = await axios.get(`/api/user/${userId}`)
+      const res = await axios.get(`/api/user`)
       console.log(res.data)
       this.setState({user: res.data})
 
     }
-    // createNewUser = async (newUser) => {
-    //   const userId = this.props.match.params.Id
-    //   const res = await axios.post(`/api/user/${userId}/comment/`, {comment: newUser})
-    //   this.setState({user: res.data.user})
-    //   this.getMovie()
-    // }
+    createNewUser = async (newUser) => {
+      const userId = this.props.match.params.Id
+      const res = await axios.post(`/api/user/${userId}/comment/`, {comment: newUser})
+      this.setState({user: res.data.user})
+      this.getMovie()
+    }
 
 
-  // handleChange = (event) => {
-  //   const newState = {
-  //     ...this.state
-  //   }
-  //   newState[event.target.name] = event.target.value
-  //   this.setState(newState)
-  // }
-  //
-  // saveNewUser = (event) => {
-  //   event.preventDefault()
-  //   this.state.createNewUser
-  //   this.setState({name: ''})
-  // }
+  handleChange = (event) => {
+    const newState = {
+      ...this.state
+    }
+    newState[event.target.name] = event.target.value
+    this.setState(newState)
+  }
+
+  saveNewUser = (event) => {
+    event.preventDefault()
+    this.state.createNewUser
+    this.setState({name: ''})
+  }
 
   render() {
     return (<div>

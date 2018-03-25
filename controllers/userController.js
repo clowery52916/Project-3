@@ -34,9 +34,8 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  res.send('new movie')
-  res.render('movie/new')
+  res.send('new user')
+  res.render('user/new')
 })
 
-module.exports = router
 module.exports = router

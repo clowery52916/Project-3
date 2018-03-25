@@ -30,12 +30,12 @@ const userController = require('./controllers/userController')
 
 app.use('/api/movies', moviesController)
 //getting all movies
-app.use('/api/movies/:movieId/comments', commentsController)
+app.use('/api/movies/:movieId', commentsController)
 //getting comments of specific movie
 // app.use('/api/movies/:id', movieController)
 app.use('/api/movies/:id/ratings', ratingsController)
 
-app.use('/api/user', userController)
+// app.use('/api/user', userController)
 //getting users
 
 app.get('/', (req, res) => {
