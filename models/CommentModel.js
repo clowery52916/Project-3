@@ -3,6 +3,6 @@ const {commentSchema} = require('../db/schemas/commentSchema')
 
 const Comment = mongoose.model('comment', commentSchema)
 
-module.exports = {
+module.exports = [
   Comment
-}
+]

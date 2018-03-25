@@ -8,11 +8,12 @@ export default class User extends Component {
 
 
   state = {
-    name: {},
+    name: {
     comment: []
   }
+}
 
-    componentWillMount() {
+    componentDidMount() {
       this.getUser()
     }
     getUser = async () => {
