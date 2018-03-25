@@ -14,7 +14,7 @@ const NavBarContainer = styled.div `
 export default class Navbar extends Component {
   render() {
     return (<NavBarContainer>
-      <h1>The Red Carpet Run Down!</h1>
+      <h1>Movies!</h1>
       <ul>
         <li>
           <Link to="/comments">Comments</Link>
@@ -23,7 +23,7 @@ export default class Navbar extends Component {
           <Link to="/movies">All Movies</Link>
         </li>
         <li>
-          <Link to="/user/testUserId">My Movies</Link>
+          <Link to="/">Home</Link>
         </li>
       </ul>
     </NavBarContainer>)

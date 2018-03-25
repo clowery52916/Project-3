@@ -18,7 +18,7 @@ export default class User extends Component {
     getUser = async () => {
       const userId = this.props.match.params.Id
       const res = await axios.get(`/api/user/${userId}`)
-      console.log(res.data)
+      // console.log(res.data)
       this.setState({user: res.data})
 
     }
@@ -46,7 +46,7 @@ export default class User extends Component {
 
   render() {
     return (<div>
-      <h1>Sign Up for your ticket to the Red Carpet!</h1>
+      <h1>Sign Up!</h1>
       <form onSubmit={this.saveNewUser}>
 
         <label htmlFor="name">User Name</label>
