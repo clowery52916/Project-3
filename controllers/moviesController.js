@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  console.log('SHOW ROUTE HIT')
+  console.log('SHOW SINGLE MOVIE HIT')
   try {
     const movieId = req.params.id
     console.log(movieId)

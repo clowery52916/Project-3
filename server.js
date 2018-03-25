@@ -47,7 +47,7 @@ app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
-const PORT = process.env.PORT || 3003
+const PORT = process.env.PORT || 3010
 
 app.listen(PORT, () => {
   console.log('RedRum' + PORT)

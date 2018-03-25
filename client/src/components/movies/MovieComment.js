@@ -1,17 +1,15 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
+// import React, {Component} from 'react';
+// import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 // import Comment from '../comments/Comment'
+// import AllMovies from './movies/AllMovies'
 // import styled from 'styled-components'
- import axios from 'axios'
-
-
-
-export default class 
+// import axios from 'axios'
+//
 //
 // export default class MovieComment extends Component {
 //
 //   state = {
-//   comments: [],
+//   movies: [],
 //   comment: {
 //     title: 'awesome',
 //     description: 'great movie!'
@@ -24,7 +22,7 @@ export default class
 //   //  console.log(this.props.id)
 //   }
 // getComment = async ()=> {
-//   const commentId = this.props.commentId
+//   const movieId = this.props.movieId
 //   const res =  await axios.get(`/api/movies/${this.props.id}/comments`)
 //   console.log(res)
 //   this.setState({comments: res.data
@@ -40,13 +38,13 @@ export default class
 //     this.setState({comment: newComment})
 // }
 //   handleSubmit = async (comment) => {
-//     const commentId = this.state.commentId
-//     const res = await axios.post(`/api/movies/${commentId}`)
+//     const movieId = this.state.movieId
+//     const res = await axios.post(`/api/movies/${movieId}`)
 //     this.setState({comment: res.data.comment})
 //   }
 // deleteComment = async() => {
-//    const commentId = this.props.match.params.newCommentId
-//   const res = await axios.delete (`/api/movies/${commentId}/comment/${commentId}`)
+//    const movieId = this.props.match.params.newMovieId
+//   const res = await axios.delete (`/api/movies/${movieId}/comment/${movieId}`)
 //   this.setState({comment: res.data.comment})
 //   this.getComment()
 // }
@@ -68,5 +66,4 @@ export default class
 //
 //     </div>
 // )
-// }
 // }

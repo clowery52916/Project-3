@@ -13,7 +13,7 @@ import AllMovies from './components/movies/AllMovies'
 import Login from './components/users/Login'
 // import Show from './components/comments/Show'
 // import EditComment from './components/comments/EditComment'
-// import SingleMovie from './components/movies/SingleMovie'
+import SingleMovie from './components/movies/SingleMovie'
 
 export default class App extends Component {
 
@@ -23,7 +23,8 @@ export default class App extends Component {
         <NavBar/>
         <Switch>
           <Route path='/user/:id' component={User}/>
-          <Route path='/movies/:id/' component={AllMovies}/>
+          <Route path='/movies/' component={AllMovies}/>
+          <Route path='/movies/movieId' component={SingleMovie}/>
         </Switch>
       </div>
     </Router>)

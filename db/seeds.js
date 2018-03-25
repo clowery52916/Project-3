@@ -6,11 +6,9 @@ const {Comment} = require('../models/CommentModel')
 
 mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
-
 mongoose.connection.once('open', () => {
   console.log("Mongoose on Seeds has connected to the database")
 })
-
 mongoose.connection.on('error', (error) => {
   console.error(`MongoDB connection error!!! ${error} `)
   process.exit(-1)
@@ -28,7 +26,7 @@ description: 'Classic for sure!!'})
 //user seeds
 const court = new User({
   name: 'Courtney_Lowery',
-  comment: [bestMovie, greatMovie, alrightMovie]
+  comment: {bestMovie, greatMovie, alrightMovie}
 })
 //movie seeds
 const bestPicture = new Movies({
