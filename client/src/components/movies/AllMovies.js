@@ -22,14 +22,14 @@ export default class Movies extends Component {
   }
 
   createNewMoviePage = async() => {
-    const res = await axios.post('/api/movies/:movieId')
+    const res = await axios.post('/api/movies/:movieId/')
       this.setState({movie: res.data.movie})
    }
   render() {
     return (<div>
       <h1>And the runners up .....</h1>
       {
-        this.state.movies.map(movie => <Link key={movie._Id} to={`/movies/${movie._Id}`} comments={this.setState.movie}>
+        this.state.movies.map(movie => <Link key={movie._id} to={`/movies/${movie._id}`} comments={this.setState.movie}>
           <br/>
           <br/>
 

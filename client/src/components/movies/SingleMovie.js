@@ -41,9 +41,9 @@ export default class SingleMovie extends Component {
     }
 
     getMovie = async () => {
-    const movieId = this.props.match.params.Id
+    const movieId = this.res.data
     const res = await axios.get(`/api/movies/${movieId}`)
-    console.log(res)
+    // console.log(res)
     this.setState({movie: res.data})
   }
 
@@ -58,7 +58,7 @@ export default class SingleMovie extends Component {
  }
 
   submitMovieComment = async (movie) => {
-  const res = await axios.post(`/api/movies/${movie.id}`)
+  const res = await axios.post(`/api/movies/${movie.id}/comments`)
   this.setState({movie: res.data.movie})
 }
 deleteMovie = async() => {
@@ -72,54 +72,53 @@ deleteMovie = async() => {
 render() {
 
   return(
-    <h1>The Shape of water</h1>
-  )
+     //
+     // if (this.state.redirect === true) {
+     //   return <Redirect to="/"/>;
+     // }
+    <div>
+       {/* <NewComment/> */}
+       <h1><MovieComment id = {this.props.match.params.Id}/></h1>
+       <p>
+         <strong>Movie Description:
+         </strong>
+         {[this.state.movie.description]}
+         <br/>
+        <img src={[this.state.movie.moviePoster]} alt={this.state.movie.title} />
+       </p>
+       <div>
+         <h1>Post a new Comment!</h1>
+         <form onSubmit={this.handleSubmit}>
+
+           <input type="text" name="commentTitle" value={this.state.commentTitle} onChange={this.handleChange}/>
+           <br/>
+           <label htmlFor='stuff'></label>
+           <input type='text' name='stuff' value={this.state.comment} onChange={this.handleChange}/>
+           <button type='submit'>Create New Comment</button>
+         </form>
+
+       </div>
+       <button onClick={this.edit}>Edit Movie Info</button>
+       <button onClick={this.delete}>Delete Movie</button>
+
+       {
+         this.state.delete
+           ? (<div>
+             <p>Are you sure?</p>
+             <br/>
+             <button onClick={this.deleteMovie}>Delete Movie</button>{" "}
+             <button onClick={this.delete}>Do not Delete</button>
+           </div>)
+           : null
+       }
+
+       {
+         this.state.edit
+           ? (<NewComment handleSubmit={this.handleSubmit} movie={this.state.movie} handleChange={this.handleChange} updateComment={this.updateComment}/>)
+           : null
+       }
+       <br/>
+     </div>)
+
 }
 }
-//      if (this.state.redirect === true) {
-//        return <Redirect to="/"/>;
-//      }
-//      return (<div>
-//        {/* <NewComment/> */}
-//        <h1><MovieComment id = {this.props.match.params.Id}/></h1>
-//        <p>
-//          <strong>Movie Description:
-//          </strong>
-//          {[this.state.movie.description]}
-//          <br/>
-//         <img src={[this.state.movie.moviePoster]} alt={this.state.movie.title} />
-//        </p>
-//        <div>
-//          <h1>Post a new Comment!</h1>
-//          <form onSubmit={this.handleSubmit}>
-//
-//            <input type="text" name="commentTitle" value={this.state.commentTitle} onChange={this.handleChange}/>
-//            <br/>
-//            <label htmlFor='stuff'></label>
-//            <input type='text' name='stuff' value={this.state.comment} onChange={this.handleChange}/>
-//            <button type='submit'>Create New Comment</button>
-//          </form>
-//
-//        </div>
-//        <button onClick={this.edit}>Edit Movie Info</button>
-//        <button onClick={this.delete}>Delete Movie</button>
-//
-//        {
-//          this.state.delete
-//            ? (<div>
-//              <p>Are you sure?</p>
-//              <br/>
-//              <button onClick={this.deleteMovie}>Delete Movie</button>{" "}
-//              <button onClick={this.delete}>Do not Delete</button>
-//            </div>)
-//            : null
-//        }
-//
-//        {
-//          this.state.edit
-//            ? (<NewComment handleSubmit={this.handleSubmit} movie={this.state.movie} handleChange={this.handleChange} updateComment={this.updateComment}/>)
-//            : null
-//        }
-//        <br/>
-//      </div>)
-// }

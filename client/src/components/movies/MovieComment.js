@@ -38,7 +38,7 @@ getComment = async ()=> {
 }
   handleSubmit = async (comment) => {
     const commentId = this.state.commentId
-    const res = await axios.post(`/api/movies/${commentId}`)
+    const res = await axios.post(`/api/movies/${this.props.movieId}/comments`)
     this.setState({comment: res.data.comment})
   }
 deleteComment = async() => {
