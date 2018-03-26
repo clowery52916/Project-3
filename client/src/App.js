@@ -23,13 +23,13 @@ export default class App extends Component {
         <NavBar/>
         <Switch>
 
-          <Route  path="/" component={User}/>
-          <Route  path='/movies' component={AllMovies}/>
-          <Route  path='/movies/:Id/' component={SingleMovie}/>
+          <Route  exact= 'exact' path="/" component={User}/>
+          <Route  exact='exact' path='/movies' component={AllMovies}/>
+          <Route  exact path='/movies/:Id/' component={SingleMovie}/>
           {/* <Route  path='/comments' component={Comment}/>
           <Route exact="exact" path='ratings' component={Ratings}/> */}
           <AllMovies/>
-          <SingleMovie />
+          {/* <SingleMovie /> */}
           <User/>
         </Switch>
       </div>

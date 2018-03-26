@@ -75,7 +75,7 @@ render() {
      }
      return (<div>
        {/* <NewComment/> */}
-       <h1><MovieComment id = {this.props.match.params.Id}/></h1>
+       {/* <h1><MovieComment id = {this.props.match.params.Id}/></h1> */}
        <p>
          <strong>Movie Description:
          </strong>
