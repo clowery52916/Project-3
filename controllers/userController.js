@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 
-const User = require('../models/UserModel')
+const {User} = require('../models/UserModel')
 
 // router.get('/', (req, res) => {
 //   Movie.findById(req.params.userId).then((movie) => {

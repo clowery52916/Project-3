@@ -3,7 +3,7 @@ import axios from 'axios'
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import Ratings from '../Ratings'
 
-export default class AllMovies extends Component {
+export default class Movies extends Component {
 
   state = {
     movies: [],

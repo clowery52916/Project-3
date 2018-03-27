@@ -9,13 +9,16 @@ import Comment from '../comments/Comment'
 import MovieComment from './MovieComment'
 
 
+const MovieContainer = styled.div `
+  display: inline-table;
 
+`
 
 export default class SingleMovie extends Component {
 
   state = {
       movie: {
-    comment: [
+    comments: [
         {
             title: 'awesome!',
             description: "Classic for sure!!",
@@ -76,22 +79,43 @@ render() {
      return (<div>
        {/* <NewComment/> */}
        {/* <h1><MovieComment id = {this.props.match.params.Id}/></h1> */}
-       <p>
+       <MovieContainer>
          <strong>Movie Description:
          </strong>
          {[this.state.movie.description]}
          <br/>
+        <br/>
+         <strong>Movie Comments:
+         </strong>
+         {[this.state.comment]}
+         <br/>
+         <br/>
+         <strong>Movie Rating:
+         </strong>
+         {[this.state.rating]}
+         <br/>
+         <br/>
         <img src={[this.state.movie.moviePoster]} alt={this.state.movie.title} />
-       </p>
+      {/* <Comment/> */}
+      {/* {
+        this.state.comments.map(comment => <Link key={comment._id} to={`/comments/${comment._id}`} cons={this.setState.comment}>
+          <br/>
+          <br/>
+
+          <h3>{comment.title}</h3>
+        </Link>)
+
+      } */}
+      </MovieContainer>
        <div>
          <h1>Post a new Comment!</h1>
          <form onSubmit={this.handleSubmit}>
 
-           <input type="text" name="commentTitle" value={this.state.commentTitle} onChange={this.handleChange}/>
+           <input type="text" name="movieTitle" value={this.state.movieTitle} onChange={this.handleChange}/>
            <br/>
-           <label htmlFor='stuff'></label>
-           <input type='text' name='stuff' value={this.state.comment} onChange={this.handleChange}/>
-           <button type='submit'>Create New Comment</button>
+           <label htmlFor='movieInfo'></label>
+           <input type='text' name='movieInfo' value={this.state.movieId} onChange={this.handleChange}/>
+           <button type='submit'>Create New Movie</button>
          </form>
 
        </div>

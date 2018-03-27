@@ -49,18 +49,18 @@ router.get('/:id',  (req, res) => {
     })
 })
 
-// router.patch('/:id',(req, res) => {
-//   const commentId = req.params.id
-//   const updatedComment = req.body
-//   const savedComment = Comment.findByIdAndUpdate(commentId, updatedComment)
-//   .then((updatedComment) => {
-//     res.json(savedComment)
-//     // res.redirect(`/api/comments`)
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
-// })
+router.patch('/:id',(req, res) => {
+  const commentId = req.params.id
+  const updatedComment = req.body
+  const savedComment = Comment.findByIdAndUpdate(commentId, updatedComment)
+  .then((updatedComment) => {
+    res.json(savedComment)
+    // res.redirect(`/api/comments`)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+})
 
 router.delete('/:commentId', (req, res) => {
   const movieId = req.params.movieId
