@@ -20,9 +20,10 @@ export default class CommentView extends Component {
   }
 
   render() {
-    // this.props.getComment.map(comment => {
-    //   return (<Comment key={comment.id} comment={this.props.comments} updateComment={this.props.updateComment} deleteComment={this.props.deleteComment} handleCommentChange={this.handleCommentChange}/>)
-    // })
+    this.props.getComment.map(comment => {
+      return (<Comment key={comment.id} comment={this.props.comments} updateComment={this.props.updateComment} deleteComment={this.props.deleteComment} handleCommentChange={this.handleCommentChange}/>)
+    })
+    //i added this after the git push last night, check in AM.
 
     return (<div>
       <h1>All Comments</h1>
