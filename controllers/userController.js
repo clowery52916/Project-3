@@ -3,12 +3,6 @@ const router = express.Router({mergeParams: true});
 
 const {User} = require('../models/UserModel')
 
-// router.get('/', (req, res) => {
-//   Movie.findById(req.params.userId).then((movie) => {
-//     const comments = movie.comments
-//     res.json(comments)
-//   })
-// })
 router.get('/', async (req, res) => {
   console.log('GETTING ALL USERS')
   try {

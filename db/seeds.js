@@ -16,19 +16,12 @@ mongoose.connection.on('error', (error) => {
   process.exit(-1)
 })
 
-const court = new User({
-  name: 'Courtney_Lowery',
-
-})
+const court = new User({name: 'Courtney_Lowery'})
 
 // comments seeds
-const bestMovie = new Comment ({
-  title: 'Best Movie ever!',
- description: 'This movie was amazing'})
-const alrightMovie = new Comment({title: 'So so',
-description: 'Wasn\'t super impressed'})
-const greatMovie = new Comment({title: 'awesome!',
-description: 'Classic for sure!!'})
+const bestMovie = new Comment({title: 'Best Movie ever!', description: 'This movie was amazing'})
+const alrightMovie = new Comment({title: 'So so', description: 'Wasn\'t super impressed'})
+const greatMovie = new Comment({title: 'awesome!', description: 'Classic for sure!!'})
 // user seeds
 
 //movie seeds
@@ -49,9 +42,7 @@ const runnerUp = new Movies({
   comment: [greatMovie, bestMovie, alrightMovie]
 })
 //removing comments
-Movies.remove({}).then(() =>
-  bestPicture.save()).then(() =>
-  runnerUp.save()).then(() => {
+Movies.remove({}).then(() => bestPicture.save()).then(() => runnerUp.save()).then(() => {
   console.log('movies saved')
 }).then(() => {
   mongoose.connection.close()

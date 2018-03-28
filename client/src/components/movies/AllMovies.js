@@ -21,10 +21,10 @@ export default class Movies extends Component {
     this.setState({movies: res.data})
   }
 
-  createNewMoviePage = async() => {
+  createNewMoviePage = async () => {
     const res = await axios.post('/api/movies/:movie_id')
-      this.setState({movie: res.data.movie})
-   }
+    this.setState({movie: res.data.movie})
+  }
   render() {
     return (<div>
       <h1>And the nomanies are.....</h1>

@@ -31,8 +31,7 @@ export default class CommentView extends Component {
         this.props.comments.map(comment => {
 
           return (<div>
-      <Redirect to= '`api/comments/${commentId}`'
-    />
+            <Redirect to='`api/comments/${commentId}`'/>
           </div>);
         })
       }

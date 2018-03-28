@@ -119,9 +119,9 @@ export default class Comment extends Component {
           </div>
         </CommentContainer>
         <button>Submit</button>
-      <button onSubmit={this.editShowView}>Edit Post</button>
-      <button onSubmit={this.deleteShowView}>Delete Post</button>
-  </form>
+        <button onSubmit={this.editShowView}>Edit Post</button>
+        <button onSubmit={this.deleteShowView}>Delete Post</button>
+      </form>
       {
         this.state.deleteShowView
           ? (<div>

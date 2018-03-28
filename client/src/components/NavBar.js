@@ -27,7 +27,6 @@ export default class Navbar extends Component {
         </li>
       </ul>
 
-      
     </NavBarContainer>)
   }
 }

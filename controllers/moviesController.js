@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const {Movies} = require('../models/MoviesModel')
-const {Comment} = require ('../models/CommentModel')
+const {Comment} = require('../models/CommentModel')
 
 router.get('/', async (req, res) => {
   console.log('GETTING ALL MOVIES')
@@ -28,25 +28,19 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const newMovie = new Movies({
-    title: req.body.title,
-    description: req.body.description,
-    moviePoster: req.body.moviePoster
-  })
+  const newMovie = new Movies({title: req.body.title, description: req.body.description, moviePoster: req.body.moviePoster})
   newMovie.save().then(savedMovie => {
     res.redirect('/api/movies')
   })
 })
 
-router.patch('/:id',(req, res) => {
+router.patch('/:id', (req, res) => {
   const movieId = req.params.id
   const updatedMovie = req.body
-  const savedMovie = Movies.findByIdAndUpdate(movieId, updatedMovie)
-  .then((updatedMovie) => {
+  const savedMovie = Movies.findByIdAndUpdate(movieId, updatedMovie).then((updatedMovie) => {
     res.json(savedMovie)
     // res.redirect(`/api/movies`)
-  })
-  .catch((err) => {
+  }).catch((err) => {
     console.log(err)
   })
 })
