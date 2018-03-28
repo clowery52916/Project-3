@@ -6,13 +6,13 @@ import ComponentContainer from './Comment'
 export default class EditComment extends Component {
 
   render() {
-    const updateComment = this.props.commentId
+    const updateMovie = this.props.movieId
 
     return (<ComponentContainer>
-      <form onSubmit={this.props.updateComment}>
-        <input name='title' onChange={this.props.handleChange} value={this.props.comment}/>
-        <input name='description' onChange={this.props.handleChange} value={this.props.comment}/>
-        <button onSubmit={this.props.handleSubmit}>Update Comment</button>
+      <form onSubmit={this.props.updateMovie}>
+        <input name='title' onChange={this.props.handleChange} value={this.props.movie}/>
+        <input name='description' onChange={this.props.handleChange} value={this.props.movie}/>
+        <button onSubmit={this.props.handleSubmit}>Update Movie</button>
       </form>
     </ComponentContainer>)
   }

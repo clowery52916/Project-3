@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router({mergeParams: true})
-const {Comment} = require('../models/CommentModel')
+const [Comment] = require('../models/CommentModel')
 const {Movies} = require('../models/MoviesModel')
 
 
@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log('Show comment Post Route')
     const movieId = req.params.movieId
     const newComment = req.body
   Movies.findById(req.params.movieId)

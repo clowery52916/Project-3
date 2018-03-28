@@ -2,7 +2,7 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const {Movies} = require('../models/MoviesModel')
 const {User} = require('../models/UserModel')
-const {Comment} = require('../models/CommentModel')
+const [Comment] = require('../models/CommentModel')
 
 mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection
@@ -16,20 +16,21 @@ mongoose.connection.on('error', (error) => {
   process.exit(-1)
 })
 
+const court = new User({
+  name: 'Courtney_Lowery',
 
-//comments seeds
-const bestMovie = new Comment({
+})
+
+// comments seeds
+const bestMovie = new Comment ({
   title: 'Best Movie ever!',
  description: 'This movie was amazing'})
 const alrightMovie = new Comment({title: 'So so',
 description: 'Wasn\'t super impressed'})
 const greatMovie = new Comment({title: 'awesome!',
 description: 'Classic for sure!!'})
-//user seeds
-const court = new User({
-  name: 'Courtney_Lowery',
-  comment: [bestMovie, greatMovie, alrightMovie]
-})
+// user seeds
+
 //movie seeds
 const bestPicture = new Movies({
   title: 'The Shape of Water',
@@ -38,14 +39,14 @@ const bestPicture = new Movies({
   Writers: 'Guillermo del Toro, (screenplay by), Vanessa Taylor',
   Stars: 'Sally Hawkins, Octavia Spencer, Michael Shannon ',
   moviePoster: 'https://i.imgur.com/pMRc7hS.jpg',
-  comment: {greatMovie, alrightMovie}
+  comment: [greatMovie, alrightMovie]
 })
 
 const runnerUp = new Movies({
   title: 'Three Billboards',
   description: 'lorem-ipsum',
   moviePoster: 'https://i.imgur.com/PSaqHQB.jpg',
-  comment: {greatMovie, bestMovie, alrightMovie}
+  comment: [greatMovie, bestMovie, alrightMovie]
 })
 //removing comments
 Movies.remove({}).then(() =>

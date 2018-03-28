@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import AllMovies from '../movies/AllMovies'
+import SingleMovie from '../movies/SingleMovie'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import styled from 'styled-components'
 import EditComment from './EditComment'
 import CommentView from './CommentView'
 import Show from './Show'
 
-
 const CommentContainer = styled.div `
-  flex-position: relative
+  flex-position: relativ
   input, textarea {
     background: transparent;
     border-style: ridge;
@@ -20,111 +20,98 @@ const CommentContainer = styled.div `
 export default class Comment extends Component {
 
   state = {
-    movies:{
-    comment:[ {
-      title: 'This movie was great!',
-      description: 'it is about a big ship'
-    }],
+    movie: {
+      title: "",
+      description: ""
+    },
     editShowView: false,
     deleteShowView: false,
     redirect: false
-  }
-}
+  };
   componentWillMount() {
-
-    this.setState({comments: this.state.comment})
-    console.log('show comment will mount')
     this.getMovieComment()
   }
 
   getMovieComment = async () => {
 
-    const comments = this.state.comments
-    const movieId = this.state.movies
-    const res = await axios.get(`/api/movies/${movieId}/${comments}`)
-    console.log('show this get comment for movie')
-    this.setState({comment: res.data})
+    const movieId = this.state.movieId
+    const res = await axios.get(`/api/movies/${movieId}`)
+    // console.log(res)
+    this.setState({movie: res.data})
   }
 
   componentDidMount() {
-    console.log('show this comment did mount')
-    this.updateComment();
+    this.updateMovie();
   }
 
-  updateComment = () => {
-    const commentId = this.state.commentId;
-    axios.get(`/api/comments/${commentId}`).then(res => {
-      console.log('show comment update route')
-      this.setState({comment: res.data.comment})
+  updateMovie = () => {
+    const movieId = this.state.movieId;
+    axios.post(`/api/movies/${movieId}`).then(res => {
+      this.setState({movie: res.data.movie})
     }).catch(err => {
-      console.log('show update comment',err);
-    })
-      // this.updateComment();
-  }
+      console.log(err);
+    });
+  };
 
-  // deleteShowView = () => {
-  //   this.setState({
-  //     deleteShowView: !this.state.deleteShowView
-  //   });
-  // };
-  //
-  // editShowView = () => {
-  //     console.log('show showComment delete')
-  //   this.setState({
-  //     editShowView: !this.state.editShowView
-  //   });
-  // };
+  deleteShowView = () => {
+    this.setState({
+      deleteShowView: !this.state.deleteShowView
+    });
+  };
 
-  // editComment = event => {
-  //   event.preventDefault();
-  //   const commentId = this.props.match.params.commentId;
-  //   const payload = {
-  //     title: this.state.comment.title,
-  //     description: this.state.comment.description
-  //   };
-  //   axios.patch(`/api/comments/${commentId}`, payload).then(res => {
-  //     console.log(res.data);
-  //     console.log('show comment patch')
-  //     this.setState({comment: res.data});
-  //   });
+  editShowView = () => {
+    this.setState({
+      editShowView: !this.state.editShowView
+    });
+  };
 
-  deleteComment = () => {
-    const commentId = this.props.match.params.commentId;
+  editMovie = event => {
+    event.preventDefault();
+    const movieId = this.props.match.params.movieId;
+    const payload = {
+      title: this.state.movie.title,
+      description: this.state.movie.description
+    };
+    axios.patch(`/api/movies/${movieId}`, payload).then(res => {
+      console.log(res.data);
+      this.setState({movie: res.data});
+    });
+
+    this.updateMovie();
+  };
+
+  deleteMovie = () => {
+    const movieId = this.props.match.params.movieId;
     this.setState({redirect: true});
-      console.log('show delete')
-    axios.delete(`/api/comments/${commentId}`).catch(err => {
 
+    axios.delete(`/api/movies/${movieId}`).catch(err => {
       console.log(err);
     }).then(() => {
-      this.props.getComment()
-      // console.log('show at the bottom getComment')
+      this.props.populatePage();
     })
   }
 
   handleChange = event => {
     const newComment = {
-      ...this.state.comment
+      ...this.state.movie
     }
     newComment[event.target.title] = event.target.value
-    this.setState({comment: newComment});
+    this.setState({movie: newComment});
     console.log(event.target.value);
   }
 
   render() {
     if (this.state.redirect === true) {
-      return <Redirect to='api/comments'/>;
+      return <Redirect to="api/movies/:Id/movies"/>;
     }
     return (<div>
-      {/* {
-      if this.state.comments.map(comment => <Link key={comment._id} to={`/movies/${comment._id}`} cons={this.setState.comment}>
-      } */}
       <p>
         Post on Here
       </p>
       <form onSubmit={this.handleSubmit}>
         <CommentContainer>
 
-          <input onChange={this.handleChange} type="text" placeholder="Movie Title" value={this.state.title}/>
+          <input onChange={this.handleChange} type="text" placeholder="Movie Title" value={this.state.name}/>
 
           <div>
 
@@ -132,28 +119,27 @@ export default class Comment extends Component {
           </div>
         </CommentContainer>
         <button>Submit</button>
-      </form>
-      <button onClick={this.editShowView}>Edit Post</button>
-      <button onClick={this.deleteShowView}>Delete Post</button>
-
+      <button onSubmit={this.editShowView}>Edit Post</button>
+      <button onSubmit={this.deleteShowView}>Delete Post</button>
+  </form>
       {
         this.state.deleteShowView
           ? (<div>
             <p>Do you really want to delete this post? This action cannot be undone.</p>
             <br/>
-            <button onClick={this.deleteShowView}>Confirm Delete</button>{" "}
-            <button onClick={this.comment}>Nope!</button>
+            <button onSubmit={this.deleteShowView}>Confirm Delete</button>{" "}
+            <button onSubmit={this.movie}>Nope!</button>
           </div>)
           : null
       }
 
       {
         this.state.editShowView
-          ? (<EditComment handleSubmit={this.updateComment} comment={this.state.comment} handleChange={this.handleChange} updateComment={this.updateComment}/>)
+          ? (<EditComment handleSubmit={this.updateMovie} movie={this.state.movie} handleChange={this.handleChange} updateMovie={this.updateMovie}/>)
           : null
       }
       <br/>
-      <Link to="/" onClick={this.props.login}>Return to login page</Link>
+      <Link to="/" onSubmit={this.props.login}>Return to login page</Link>
     </div>);
   }
 }

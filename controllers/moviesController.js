@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  console.log('SHOW SINGLE MOVIE HIT')
+  console.log('SHOW ROUTE HIT')
   try {
     const movieId = req.params.id
     console.log(movieId)
@@ -44,7 +44,7 @@ router.patch('/:id',(req, res) => {
   const savedMovie = Movies.findByIdAndUpdate(movieId, updatedMovie)
   .then((updatedMovie) => {
     res.json(savedMovie)
-    res.redirect(`/api/movies/${movieId}/comments`)
+    // res.redirect(`/api/movies`)
   })
   .catch((err) => {
     console.log(err)
