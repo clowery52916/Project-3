@@ -21,7 +21,7 @@ export default class CommentView extends Component {
 
   render() {
     this.props.getComment.map(comment => {
-      return (<Comment key={comment._id} comment={this.props.comments} updateComment={this.props.updateComment} deleteComment={this.props.deleteComment} handleCommentChange={this.handleCommentChange}/>)
+      return (<Comment key={comment.id} comment={this.props.comments} updateComment={this.props.updateComment} deleteComment={this.props.deleteComment} handleCommentChange={this.handleCommentChange}/>)
     })
 
     return (<div>
@@ -30,7 +30,8 @@ export default class CommentView extends Component {
         this.props.comments.map(comment => {
 
           return (<div>
-            <Redirect to='/api/comments/commentId'/>
+      <Redirect to= '`/api/comments/${commentId}`'
+    />
           </div>);
         })
       }

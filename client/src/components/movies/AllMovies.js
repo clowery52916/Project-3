@@ -29,11 +29,11 @@ export default class Movies extends Component {
     return (<div>
       <h1>And the nomanies are.....</h1>
       {
-        this.state.movies.map(movie => <Link key={movie._id} to={`/movies/${movie._id}`} cons={this.setState.movie}>
+        this.state.movies.map(movie => <Link key={movie._id} to={`/movies/${movie._id}`} comments={this.setState.movie}>
           <br/>
           <br/>
 
-          <img src={movie.moviePoster} alt={movie.title}/>
+          <img src={[movie.moviePoster]} alt={[movie.title]}/>
         </Link>)
 
       }

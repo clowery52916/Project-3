@@ -6,19 +6,16 @@ import NewComment from '../comments/NewComment'
 import CommentView from '../comments/CommentView'
 import styled from 'styled-components'
 import Comment from '../comments/Comment'
-import MovieComment from './MovieComment'
 
 
-const MovieContainer = styled.div `
-  display: inline-table;
 
-`
+
 
 export default class SingleMovie extends Component {
 
   state = {
       movie: {
-    comments: [
+    comment: [
         {
             title: 'awesome!',
             description: "Classic for sure!!",
@@ -46,7 +43,7 @@ export default class SingleMovie extends Component {
     getMovie = async () => {
     const movieId = this.props.match.params.Id
     const res = await axios.get(`/api/movies/${movieId}`)
-    console.log(res)
+    console.log(movieId)
     this.setState({movie: res.data})
   }
 
@@ -61,7 +58,7 @@ export default class SingleMovie extends Component {
  }
 
   submitMovieComment = async (movie) => {
-  const res = await axios.post(`/api/movies/${movie.id}`)
+  const res = await axios.post(`/api/movies`)
   this.setState({movie: res.data.movie})
 }
 deleteMovie = async() => {
@@ -77,51 +74,28 @@ render() {
        return <Redirect to="/"/>;
      }
      return (<div>
-       {/* <NewComment/> */}
+       <Comment/>
        {/* <h1><MovieComment id = {this.props.match.params.Id}/></h1> */}
-       <MovieContainer>
+       <p>
          <strong>Movie Description:
          </strong>
          {[this.state.movie.description]}
          <br/>
-        <br/>
-         <strong>Movie Comments:
-         </strong>
-         {[this.state.comment]}
-         <br/>
-         <br/>
-         <strong>Movie Rating:
-         </strong>
-         {[this.state.rating]}
-         <br/>
-         <br/>
         <img src={[this.state.movie.moviePoster]} alt={this.state.movie.title} />
-      {/* <Comment/> */}
-      {/* {
-        this.state.comments.map(comment => <Link key={comment._id} to={`/comments/${comment._id}`} cons={this.setState.comment}>
-          <br/>
-          <br/>
+       </p>
 
-          <h3>{comment.title}</h3>
-        </Link>)
-
-      } */}
-      </MovieContainer>
-       <div>
-         <h1>Post a new Comment!</h1>
-         <form onSubmit={this.handleSubmit}>
-
-           <input type="text" name="movieTitle" value={this.state.movieTitle} onChange={this.handleChange}/>
-           <br/>
-           <label htmlFor='movieInfo'></label>
-           <input type='text' name='movieInfo' value={this.state.movieId} onChange={this.handleChange}/>
-           <button type='submit'>Create New Movie</button>
-         </form>
-
-       </div>
-       <button onClick={this.edit}>Edit Movie Info</button>
-       <button onClick={this.delete}>Delete Movie</button>
-
+       <button onClick={this.editShowView}>Edit Movie</button>
+       <button onClick={this.deleteShowView}>Delete Movie</button>
+       {
+         this.state.edit
+         ? (<div>
+           <p>What do you want to change?</p>
+         <br/>
+         <button onClick={this.editShowView}>Delete Movie</button>{" "}
+         <button onClick={this.deleteShowView}>Do not Delete</button>
+         </div>)
+         : null
+       }
        {
          this.state.delete
            ? (<div>

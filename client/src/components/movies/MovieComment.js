@@ -17,15 +17,14 @@ export default class MovieComment extends Component {
 
 
   componentWillMount() {
-    this.getComment()
+    this.getMovieComment()
   //  console.log(this.props.id)
   }
-getComment = async ()=> {
+getMovieComment = async ()=> {
   const commentId = this.props.commentId
-  const res =  await axios.get(`/api/movies/${this.props.id}/comments`)
+  const res =  await axios.get(`/api/movies/${commentId}/comments`)
   console.log(res)
-  this.setState({comments: res.data
-  })
+  this.setState({comments: res.data})
 }
   handleChange(event, id) {
     console.log(id)
@@ -45,7 +44,7 @@ deleteComment = async() => {
    const commentId = this.props.match.params.newCommentId
   const res = await axios.delete (`/api/movies/${commentId}/comment/${commentId}`)
   this.setState({comment: res.data.comment})
-  this.getComment()
+  this.getMovieComment()
 }
   render() {
 
@@ -55,10 +54,10 @@ deleteComment = async() => {
 
       <form onSubmit={this.handleSubmit()}>
 
-        <textarea type='submit' value={this.state.comment.title} onChange={this.handleChange}/>
+        <textarea type='submit' value={[this.state.title]} onChange={this.handleChange}/>
         <br/>
         <br/>
-        <textarea type='submit' placeholder='Tell us your thoughts!' name='description' value={this.state.comment.description} onChange={this.handleChange}/>
+        <textarea type='submit' placeholder='Tell us your thoughts!' name='description' value={[this.state.description]} onChange={this.handleChange}/>
         </form>
         <button type='onChange'>Create</button>
 
