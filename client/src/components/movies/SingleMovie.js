@@ -77,11 +77,11 @@ export default class SingleMovie extends Component {
         <strong>
           Movie Title:
         </strong>
-        {[this.props.match.params.movie]}
+        {this.props.match.params.movie}
         <br/>
         <strong>Movie Description:
         </strong>
-        {[this.state.movie.description]}
+        {this.state.movie.description}
         <br/>
         <br/>
         <strong>Movie Comments:
@@ -91,13 +91,13 @@ export default class SingleMovie extends Component {
         <br/>
         <strong>Movie Rating:
         </strong>
-        {[this.state.rating]}
+        {this.state.rating}
         <br/>
         <br/>
         <img src={[this.state.movie.moviePoster]} alt={this.state.movie.title}/>
       </MovieContainer>
 
-      <Comment/>
+      <Comment movieId={this.props.match.params.Id}/>
       <br/>
     </div>)
   }

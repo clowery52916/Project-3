@@ -34,7 +34,7 @@ export default class Comment extends Component {
 
   getMovieComment = async () => {
 
-    const movieId = this.state.movieId
+    const movieId = this.props.movieId
     const res = await axios.get(`/api/movies/${movieId}`)
     // console.log(res)
     this.setState({movie: res.data})
