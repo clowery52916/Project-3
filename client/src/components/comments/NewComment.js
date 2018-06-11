@@ -55,7 +55,7 @@ export default class NewComment extends Component {
       <h1>Post your thoughts!</h1>
       <form onSubmit={this.handleSubmit}>
 
-        <input type="text" name="commentTitle" value={this.state.commentTitle} onChange={this.handleChange}/>
+        <input type="text" name="commentTitle" value={this.state.comment} onChange={this.handleChange}/>
         <br/>
         <label htmlFor='stuff'></label>
         <input type='text' name='stuff' value={this.state.comment} onChange={this.handleChange}/>
